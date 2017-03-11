@@ -70,7 +70,7 @@ namespace TaxiteBus
 
         protected void BtnConsulterReserves_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~Consulter");
+            Response.Redirect("~consulterReservation");
         }
     }
 }
