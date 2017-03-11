@@ -394,6 +394,10 @@
     <Compile Include="Migrations\201703110536553_nom1.Designer.cs">
       <DependentUpon>201703110536553_nom1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703110604259_nom2.cs" />
+    <Compile Include="Migrations\201703110604259_nom2.Designer.cs">
+      <DependentUpon>201703110604259_nom2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -462,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703110536553_nom1.resx">
       <DependentUpon>201703110536553_nom1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703110604259_nom2.resx">
+      <DependentUpon>201703110604259_nom2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

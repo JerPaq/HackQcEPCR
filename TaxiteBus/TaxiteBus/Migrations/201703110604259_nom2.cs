@@ -1,0 +1,18 @@
+namespace TaxiteBus.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class nom2 : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.AspNetUsers", "numeroTel");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.AspNetUsers", "numeroTel", c => c.String());
+        }
+    }
+}
