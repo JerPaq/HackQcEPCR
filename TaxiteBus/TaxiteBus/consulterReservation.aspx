@@ -3,4 +3,12 @@
 
     <h1>Réservation</h1>
 
+    <table>
+        <% foreach (var reserve in lstReserves) { %>
+
+        
+
+        <% } %>
+    </table>
+    
 </asp:Content>

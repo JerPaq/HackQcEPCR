@@ -16,6 +16,8 @@ namespace TaxiteBus
 
     public partial class reservation : System.Web.UI.Page
     {
+        public List<string> lstString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
