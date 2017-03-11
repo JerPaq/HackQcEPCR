@@ -399,8 +399,10 @@
       <DependentUpon>201703110604259_nom2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CreationDeTrajets.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Trajet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="reservation.aspx.cs">
       <DependentUpon>reservation.aspx</DependentUpon>

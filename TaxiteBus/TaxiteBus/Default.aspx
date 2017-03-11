@@ -154,9 +154,20 @@
     </div>
 
 
-    <div style="visibility: hidden;">
-        <asp:Button ID="btnReserver" runat="server" Text="Réserver" OnClick="btnReserver_Click" />
+    <div>
+        <label ID="labelTest" runat="server"></label>
     </div>
 
+    <% if (utilEstClient()) {%>
+
+    <asp:Button ID="BtnReserver" runat="server" Text="Button" OnClick="BtnReserver_Click1" />
+
+    <% } %>
+
+    <% if (utilEstCentral()) {%>
+
+    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Button" OnClick="BtnConsulterReserves_Click" />
+
+    <% } %>
 
 </asp:Content>

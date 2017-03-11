@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using TaxiteBus.Models;
 using TaxiteBus.Structures;
@@ -15,7 +17,9 @@ namespace TaxiteBus
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArretsTaxiBus arretTaxiBus = new ArretsTaxiBus();
+            estConnecter();
+            
+            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
 
             List<String> points = new List<string>();
 
@@ -27,54 +31,46 @@ namespace TaxiteBus
             {
                 do
                 {
-                    alea = ((int)(random.NextDouble() * arretTaxiBus.jSONTaxiBus.features.Length));
+                    alea = ((int)(random.NextDouble() * arretTaxiBus.Arrets.Length));
                 } while (deja.Contains(alea));
                 deja.Add(alea);
-                LiteralLatitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
-        }
-
-
-        protected void EnregistrerReservationJSON(object sender, EventArgs e)
-        {
-            List<Reservation> lstReservations = new List<Reservation>();
-
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-
-            string json = JsonConvert.SerializeObject(lstReservations.ToArray());
-            System.IO.File.WriteAllText(@"D:\fichier.json", json);
-        }
-
-        protected void ChargerReservationJSON(object sender, EventArgs e)
-        {
-            string json = System.IO.File.ReadAllText(@"D:\fichier.json");
-            List<Reservation> lstReservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
         }
 
         protected void btnReserver_Click(object sender, EventArgs e)
         {
             Response.Redirect("reservation.aspx");
+        }
+
+        private void estConnecter()
+        {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login");
+            }
+        }
+
+        protected bool utilEstClient()
+        {
+            return System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()).typeUtil == "CLIENT";
+        }
+
+        protected bool utilEstCentral()
+        {
+            return System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()).typeUtil == "CENTRAL";
+        }
+
+        protected void BtnReserver_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnConsulterReserves_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~consulterReservation");
         }
     }
 }
