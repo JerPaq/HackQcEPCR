@@ -59,7 +59,7 @@
                     </button>--%>
             </div>
             <br />
-            <button type="button" class="btn btn-default navbar-btn">Soumettre</button>
+            <asp:Button ID="btnSoumettre" runat="server" Text="Soumettre" OnClick="btnSoumettre_Click" />
         </div>
         <div class="col-md-4"></div>
     </div>
