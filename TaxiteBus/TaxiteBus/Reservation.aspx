@@ -1,61 +1,50 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reservation.aspx.cs" Inherits="TaxiteBus.Reservation" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TaxiteBus._Default" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h2>Réservation</h2>
+            <div class="input-group">
+                <label>Départ :</label>
+                <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    <button type="button" class="btn btn-default"  aria-label="Help" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </button>
+            </div>
+            <br />
+            <div class="input-group">
+                <label>Vers :</label>
+                <input type="text" class="form-control" aria-describedby="basic-addon1">
+                    
+                    <button type="button" class="btn btn-default" aria-label="Help" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </button>
+            </div>
+            <br />
+            <button type="button" class="btn btn-default navbar-btn">Soumettre</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+                <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-    <style type="text/css">
-        body
-        {
-            font-family: Arial;
-            font-size: 10pt;
-        }
-    </style>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Carte</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
 
-</head>
-<body>
-    <form runat="server">
-
-    <asp:HiddenField ID="HiddenFieldPlace1" runat="server" Value="Initiale" />
-    <asp:HiddenField ID="HiddenFieldPlace2" runat="server" Value="Initiale" />
-
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB16oFkTxj39_YELrwqLJr5TMMBTAIkPFc&sensor=false&libraries=places"></script>
-    <script type="text/javascript">
-        google.maps.event.addDomListener(window, 'load', function () {
-            var places = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
-            google.maps.event.addListener(places, 'place_changed', function () {
-                var place = places.getPlace();
-                var address = place.formatted_address;
-                var latitude = place.geometry.location.lat();
-                var longitude = place.geometry.location.lng();
-                var mesg = "Address: " + address;
-                mesg += "\nLatitude: " + latitude;
-                mesg += "\nLongitude: " + longitude;
-                alert(mesg);
-            });
-            var places2 = new google.maps.places.Autocomplete(document.getElementById('txtPlaces2'));
-            google.maps.event.addListener(places, 'place_changed', function () {
-                var place = places.getPlace();
-                var address = place.formatted_address;
-                var latitude = place.geometry.location.lat();
-                var longitude = place.geometry.location.lng();
-                var mesg = "Address: " + address;
-                mesg += "\nLatitude: " + latitude;
-                mesg += "\nLongitude: " + longitude;
-                alert(mesg);
-            });
-        });
-    </script>
-    <span>Location:</span>
-    
-    <asp:TextBox runat="server" ID="txtPlaces" ></asp:TextBox>
-        <asp:TextBox runat="server" ID="txtPlaces2" ></asp:TextBox>
-
-
-    </form>
-
-</body>
-</html>
+                </div>
+            </div>
+</asp:Content>

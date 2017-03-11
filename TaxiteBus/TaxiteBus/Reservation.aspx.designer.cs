@@ -10,6 +10,6 @@
 namespace TaxiteBus {
     
     
-    public partial class Reservation {
+    public partial class reservation {
     }
 }
