@@ -4,7 +4,6 @@
 
     <div>
 
-         
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false">
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -56,7 +55,6 @@
                 window.alert('Directions request failed ' + status);
             }
         });
-
 
         // Ajoute les marqueurs à la main, qui lorsque cliqués appellent le serveur
         for (i = 0; i < lats.length; i++) {  
