@@ -10,7 +10,7 @@ namespace TaxiteBus
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArretsTaxiBus arretTaxiBus = new ArretsTaxiBus();
+            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
             string coorDepart = this.HiddenField1.Value;
             string[] tblCoorDepart = coorDepart.Split(',');
             string coorDestination = this.HiddenField2.Value;
@@ -19,7 +19,7 @@ namespace TaxiteBus
 
             
             List<int> deja = new List<int>();
-            int nbArret = (int)(arretTaxiBus.jSONTaxiBus.features.Length);
+            int nbArret = (int)(arretTaxiBus.Arrets.Length);
 
             //for ()
             //{

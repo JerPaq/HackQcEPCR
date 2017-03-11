@@ -9,7 +9,7 @@ namespace TaxiteBus
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArretsTaxiBus arretTaxiBus = new ArretsTaxiBus();
+            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
 
 
             List<String> points = new List<string>();
@@ -23,11 +23,11 @@ namespace TaxiteBus
             {
                 do
                 {
-                    alea = ((int)(random.NextDouble() * arretTaxiBus.jSONTaxiBus.features.Length));
+                    alea = ((int)(random.NextDouble() * arretTaxiBus.Arrets.Length));
                 } while (deja.Contains(alea));
                 deja.Add(alea);
-                LiteralLatitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
             //  this.legs.AddRange(GoogleMapManager.GetOptimizedPath(points, true).routes.First().legs);
