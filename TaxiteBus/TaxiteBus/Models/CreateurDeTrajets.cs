@@ -12,7 +12,7 @@ using TaxiteBus.Structures;
 namespace TaxiteBus.Models
 {
     public sealed class CreateurDeTrajets
-    {
+    { 
         private static readonly CreateurDeTrajets instance = new CreateurDeTrajets();
 
         private CreateurDeTrajets() { }

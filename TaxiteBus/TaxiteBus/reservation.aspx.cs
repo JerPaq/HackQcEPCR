@@ -18,7 +18,7 @@ namespace TaxiteBus
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArretsTaxiBus arretTaxiBus = new ArretsTaxiBus();
+            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
             string coorDepart = this.HiddenField1.Value;
             string[] tblCoorDepart = coorDepart.Split(',');
             string coorDestination = this.HiddenField2.Value;
@@ -27,7 +27,7 @@ namespace TaxiteBus
 
             
             List<int> deja = new List<int>();
-            int nbArret = (int)(arretTaxiBus.jSONTaxiBus.features.Length);
+            int nbArret = (int)(arretTaxiBus.Arrets.Length);
 
             //for ()
             //{
@@ -53,7 +53,7 @@ namespace TaxiteBus
         {
             List<Reservation> lstReservations = new List<Reservation>();
 
-            lstReservations.Add(
+     /*       lstReservations.Add(
                 new Reservation(
                     new ApplicationUser(),
                     new JSONTaxiBus(),
@@ -73,7 +73,7 @@ namespace TaxiteBus
                     new ApplicationUser(),
                     new JSONTaxiBus(),
                     new JSONTaxiBus()));
-
+                    */
             string json = JsonConvert.SerializeObject(lstReservations.ToArray());
             System.IO.File.WriteAllText(@"D:\fichier.json", json);
         }
@@ -89,10 +89,10 @@ namespace TaxiteBus
             // Permet d'aller chercher l'utilisateur connecter (l'objet)
             Reservation reservation = new Reservation();
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            reservation.client = user;
-            reservation.depart = pDepart;
-            reservation.arrivee = pArriver;
-            reservation.heure = pHeure;
+           // reservation.client = user;
+          //  reservation.depart = pDepart;
+          //  reservation.arrivee = pArriver;
+          //  reservation.heure = pHeure;
 
         }
 
