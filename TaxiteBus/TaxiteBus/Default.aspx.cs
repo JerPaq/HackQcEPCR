@@ -17,7 +17,7 @@ namespace TaxiteBus
         {
             estConnecter();
             
-            ArretsTaxiBus arretTaxiBus = new ArretsTaxiBus();
+            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
 
             List<String> points = new List<string>();
 
@@ -29,7 +29,7 @@ namespace TaxiteBus
             {
                 do
                 {
-                    alea = ((int)(random.NextDouble() * arretTaxiBus.jSONTaxiBus.features.Length));
+                    alea = ((int)(random.NextDouble() * arretTaxiBus.Arrets.Length));
                 } while (deja.Contains(alea));
                 deja.Add(alea);
                 LiteralLatitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[1].ToString().Replace(',', '.');
