@@ -7,12 +7,19 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TaxiteBus.Models;
+using System;
 
 namespace TaxiteBus.Models
 {
     // Vous pouvez ajouter des données d'utilisateur pour l'utilisateur en ajoutant d'autres propriétés à votre classe d'utilisateur. Pour en savoir plus, visitez https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
+        public String prenom { get; set; }
+        public String nom { get; set; }
+        public String numeroTel { get; set; }
+        public String adresse { get; set; }
+        public String dateNaissance { get; set; }
+        public String typeUtil { get; set; }
 
 
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)

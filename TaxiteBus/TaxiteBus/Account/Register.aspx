@@ -11,11 +11,27 @@
         <hr />
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Messagerie</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="txtPrenom" CssClass="col-md-2 control-label">Prénom</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                    CssClass="text-danger" ErrorMessage="Le champ d’adresse de messagerie est obligatoire." />
+                <asp:TextBox runat="server" ID="txtPrenom" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPrenom"
+                    CssClass="text-danger" ErrorMessage="Le champ de prénom est obligatoire." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="txtNom" CssClass="col-md-2 control-label">Nom</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="txtNom" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNom"
+                    CssClass="text-danger" ErrorMessage="Le champ de nom est obligatoire." />
+            </div>
+        </div>        
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="txtUser" CssClass="col-md-2 control-label">Usager</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="txtUser" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUser"
+                    CssClass="text-danger" ErrorMessage="Le champ d'usager est obligatoire." />
             </div>
         </div>
         <div class="form-group">
@@ -34,6 +50,14 @@
                     CssClass="text-danger" Display="Dynamic" ErrorMessage="Le champ confirmer le mot de passe est requis." />
                 <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
                     CssClass="text-danger" Display="Dynamic" ErrorMessage="Le mot de passe et le mot de passe de confirmation ne correspondent pas." />
+            </div>
+        </div>        
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Messagerie</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
+                    CssClass="text-danger" ErrorMessage="Le champ d’adresse de messagerie est obligatoire." />
             </div>
         </div>
         <div class="form-group">
