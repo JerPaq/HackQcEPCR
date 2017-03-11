@@ -5,7 +5,6 @@ using System.Web;
 
 namespace TaxiteBus.Structures
 {
-
     // Type created for JSON at <<root>>>
     [System.Runtime.Serialization.DataContractAttribute()]
     public partial class JSONTaxiBus
@@ -80,5 +79,6 @@ namespace TaxiteBus.Structures
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Horaire_DIM;
     }
+
 
 }
