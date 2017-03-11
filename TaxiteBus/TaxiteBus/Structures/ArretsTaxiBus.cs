@@ -11,6 +11,12 @@ namespace TaxiteBus.Structures
 {
     public class ArretsTaxiBus
     {
+
+
+        JSONTaxiBus jSONTaxiBus;
+
+        public JSONTaxiBus JSONTaxiBus { get => jSONTaxiBus; set => jSONTaxiBus = value; }
+
         public ArretsTaxiBus()
         {
 
@@ -18,14 +24,16 @@ namespace TaxiteBus.Structures
             Uri uri = new Uri(uRL);
 
             string rep = GetRequest(uri);
-            JSONTaxiBus result = new JSONTaxiBus();
+
 
             using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(rep)))
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(result.GetType());
-                result = ser.ReadObject(mem) as JSONTaxiBus;
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(jSONTaxiBus.GetType());
+                jSONTaxiBus = ser.ReadObject(mem) as JSONTaxiBus;
             }
         }
+
+
 
 
         //---------------------------------------------------------------------
