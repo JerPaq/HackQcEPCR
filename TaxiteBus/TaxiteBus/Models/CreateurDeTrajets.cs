@@ -43,11 +43,14 @@ namespace TaxiteBus.Models
             // Créer une liste de réservation au hasard
             for (int i = 0; i <= 100; i++)
             {
+                Features depart = arretTaxiBus.Arrets[(int)(random.NextDouble() * arretTaxiBus.Arrets.Length)];
+                Features arret = arretTaxiBus.Arrets.Where(r => depart.properties.Type_arret == r.properties.Type_arret).ToArray()[(int)(random.NextDouble() * arretTaxiBus.Arrets.Where(r => depart.properties.Type_arret == r.properties.Type_arret).Count())];
+
                 lstReservations.Add(
                     new Reservation(
                         new ApplicationUser(),
-                       arretTaxiBus.Arrets[(int)(random.NextDouble() * arretTaxiBus.Arrets.Length)],
-                       arretTaxiBus.Arrets[(int)(random.NextDouble() * arretTaxiBus.Arrets.Length)],
+                       depart,
+                       arret,
                        DateTime.Now));
             }
 
@@ -62,7 +65,9 @@ namespace TaxiteBus.Models
                 
                 Trajet trajetCourrant = new Trajet();
                 this.trajets.Add(trajetCourrant);
-                foreach (Reservation currentReservation in lstReservations.Where(r=>r.Depart.properties.Type_arret== currentZonesLignesNoms).OrderByDescending(r => gare.GetDistanceTo(new GeoCoordinate(r.Depart.geometry.coordinates[1], r.Depart.geometry.coordinates[0]))))
+                foreach (Reservation currentReservation 
+                    in lstReservations.Where(r=>r.Depart.properties.Type_arret== currentZonesLignesNoms)
+                    .OrderByDescending(r => gare.GetDistanceTo(new GeoCoordinate(r.Depart.geometry.coordinates[1], r.Depart.geometry.coordinates[0]))))
                 {
                     if (trajetCourrant.Reservations.Count == 4)
                     {
@@ -73,6 +78,7 @@ namespace TaxiteBus.Models
                     }
                     trajetCourrant.Reservations.Add(currentReservation);
                 }
+                this.TrierFeatures(trajetCourrant);
             }
             // Pour chaque réservation dans moins d'une heures
             // Découper par quatre en optimisant à partir du plus loin de la guare
