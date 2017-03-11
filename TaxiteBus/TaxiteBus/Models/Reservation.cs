@@ -12,20 +12,20 @@ namespace TaxiteBus.Models
     {
         //Attributs
         public ApplicationUser client { get; set; }
-        public ArretsTaxiBus depart { get; set; }
-        public ArretsTaxiBus arrivee { get; set; }
+        public JSONTaxiBus depart { get; set; }
+        public JSONTaxiBus arrivee { get; set; }
         public string heure { get; set; }
 
         public Reservation() { }
 
-        public Reservation(ApplicationUser pClient, ArretsTaxiBus pDepart, ArretsTaxiBus pArrivee)
+        public Reservation(ApplicationUser pClient, JSONTaxiBus pDepart, JSONTaxiBus pArrivee)
         {
             client = pClient;
             depart = pDepart;
             arrivee = pArrivee;
         }
 
-        public string getJsonString(string path)
+        public string getJsonString()
         {
             return JsonConvert.SerializeObject(this);
         }
