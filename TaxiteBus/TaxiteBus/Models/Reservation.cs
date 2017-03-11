@@ -11,18 +11,41 @@ namespace TaxiteBus.Models
     public class Reservation
     {
         //Attributs
-        public ApplicationUser client { get; set; }
-        public JSONTaxiBus depart { get; set; }
-        public JSONTaxiBus arrivee { get; set; }
-        public DateTime heure { get; set; }
+        private ApplicationUser client;
+        public ApplicationUser Client
+        {
+            get { return this.client; }
+            set { this.client = value; }
+        }
+
+        private Features depart;
+        public Features Depart
+        {
+            get { return this.depart; }
+            set { this.depart = value; }
+        }
+        private Features arrivee;
+        public Features Arrivee
+        {
+            get { return this.arrivee; }
+            set { this.arrivee = value; }
+        }
+
+        private DateTime heure;
+        public DateTime Heure
+        {
+            get { return this.heure; }
+            set { this.heure = value; }
+        }
 
         public Reservation() { }
 
-        public Reservation(ApplicationUser pClient, JSONTaxiBus pDepart, JSONTaxiBus pArrivee)
+        public Reservation(ApplicationUser pClient, Features pDepart, Features pArrivee, DateTime pHeure)
         {
-            client = pClient;
-            depart = pDepart;
-            arrivee = pArrivee;
+            this.client = pClient;
+            this.depart = pDepart;
+            this.arrivee = pArrivee;
+            this.heure = pHeure;
         }
 
         public string getJsonString()
