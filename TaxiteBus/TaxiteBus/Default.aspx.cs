@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using TaxiteBus.Models;
 using TaxiteBus.Structures;
@@ -49,6 +51,26 @@ namespace TaxiteBus
             {
                 Response.Redirect("~/Account/Login");
             }
+        }
+
+        protected bool utilEstClient()
+        {
+            return System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()).typeUtil == "CLIENT";
+        }
+
+        protected bool utilEstCentral()
+        {
+            return System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()).typeUtil == "CENTRAL";
+        }
+
+        protected void BtnReserver_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnConsulterReserves_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~Consulter");
         }
     }
 }
