@@ -49,56 +49,38 @@ namespace TaxiteBus
             //  this.legs.AddRange(GoogleMapManager.GetOptimizedPath(points, true).routes.First().legs);
         }
 
-        protected void EnregistrerReservationJSON(object sender, EventArgs e)
-        {
-            List<Reservation> lstReservations = new List<Reservation>();
-
-     /*       lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-                    */
+        protected void EnregistrerReservationJSON(List<Reservation> lstReservations)
+        { 
             string json = JsonConvert.SerializeObject(lstReservations.ToArray());
-            System.IO.File.WriteAllText(@"D:\fichier.json", json);
+            System.IO.File.WriteAllText("reservations.json", json);
         }
 
-        protected void ChargerReservationJSON(object sender, EventArgs e)
+        protected List<Reservation> ChargerReservationJSON()
         {
-            string json = System.IO.File.ReadAllText(@"D:\fichier.json");
-            List<Reservation> lstReservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
+            if(File.Exists("reservations.json"))
+            {
+                string json = System.IO.File.ReadAllText("reservations.json");
+                return JsonConvert.DeserializeObject<List<Reservation>>(json);
+            }
+            else
+            {
+                return new List<Reservation>();
+            }            
         }
 
-        private void reserver(JSONTaxiBus pDepart, JSONTaxiBus pArriver, DateTime pHeure)
+        private void reserver(Features pDepart, Features pArriver, DateTime pHeure)
         {
             // Permet d'aller chercher l'utilisateur connecter (l'objet)
-            Reservation reservation = new Reservation();
+            List<Reservation> lstReservations = ChargerReservationJSON();
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-           // reservation.client = user;
-          //  reservation.depart = pDepart;
-          //  reservation.arrivee = pArriver;
-          //  reservation.heure = pHeure;
-
+            Reservation reservation = new Reservation(user,pDepart,pArriver,pHeure);
+            lstReservations.Add(reservation);
+            EnregistrerReservationJSON(lstReservations);
         }
 
         protected void btnSoumettre_Click(object sender, EventArgs e)
         {
-
+            reserver(null, null, new DateTime(2017, 03, 13, 15, 53, 0));
         }
     }
 }
