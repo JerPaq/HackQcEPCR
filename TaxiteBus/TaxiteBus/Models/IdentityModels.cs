@@ -16,7 +16,6 @@ namespace TaxiteBus.Models
     {
         public String prenom { get; set; }
         public String nom { get; set; }
-        public String numeroTel { get; set; }
         public String adresse { get; set; }
         public String dateNaissance { get; set; }
         public String typeUtil { get; set; }
@@ -34,6 +33,7 @@ namespace TaxiteBus.Models
         {
             return Task.FromResult(GenerateUserIdentity(manager));
         }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

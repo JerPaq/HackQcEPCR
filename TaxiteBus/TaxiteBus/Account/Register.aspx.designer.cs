@@ -40,13 +40,31 @@ namespace TaxiteBus.Account {
         protected global::System.Web.UI.WebControls.TextBox txtNom;
         
         /// <summary>
-        /// Contrôle txtUser.
+        /// Contrôle Email.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUser;
+        protected global::System.Web.UI.WebControls.TextBox Email;
+        
+        /// <summary>
+        /// Contrôle txtTel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTel;
+        
+        /// <summary>
+        /// Contrôle txtAdresse.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdresse;
         
         /// <summary>
         /// Contrôle Password.
@@ -67,12 +85,12 @@ namespace TaxiteBus.Account {
         protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
         
         /// <summary>
-        /// Contrôle Email.
+        /// Contrôle txtNaissance.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email;
+        protected global::System.Web.UI.WebControls.TextBox txtNaissance;
     }
 }
