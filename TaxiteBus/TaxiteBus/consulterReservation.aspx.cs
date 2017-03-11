@@ -14,11 +14,20 @@ namespace TaxiteBus
     {
         //Attributs
         public List<Reservation> lstReserves;
+        public Dictionary<String, Reservation> dictionnaire = new Dictionary<String, Reservation>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             lstReserves = ChargerReservationJSON();
+            foreach (Reservation reserv in lstReserves)
+            {
+                String cle = reserv.Depart.ToString() + " à " + reserv.Arrivee.ToString() + ", " + reserv.Heure.ToString();
+                dictionnaire.Add(cle, reserv);
+            }
+            lstbxReservation.DataSource = dictionnaire;
+            lstbxReservation.DataTextField = "Key";
+            lstbxReservation.DataValueField = "Value";
+            lstbxReservation.DataBind();
         }
 
         protected List<Reservation> ChargerReservationJSON()
