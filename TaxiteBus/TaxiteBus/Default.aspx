@@ -2,41 +2,84 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
+    <div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
+         
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false">
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    }
+    else {
+        alert("Laissez-nous vous espionner!");
+    }
+     
+    function success(position) {
+        var lat = 48.4525;//position.coords.latitude;
+        var long = -68.5232;//position.coords.longitude;
+        var city = "Rimouski";//position.coords.locality;
+        var myLatlng = new google.maps.LatLng(lat, long);
+        var myOptions = { center: myLatlng, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        // C# remplie le tableau avec les points selon les points choisies dans TaxiBus.cs
+            var lats = [<asp:Literal ID="LiteralLatitude" runat="server"></asp:Literal >];
+            var longs = [<asp:Literal ID="LiteralLongitude" runat="server"></asp:Literal >];            
+         
+        //Ici affiche les points avec le trajet entre.
+        var waypts = [];
+        for (i = 1; i < lats.length-1; i++) {
+            waypts.push({
+                location: lats[i]+","+longs[i],
+                stopover: true
+            });             
+        }
+
+        var directionsService = new google.maps.DirectionsService;
+        directionsService.route({
+            origin: lats[0]+","+longs[0],
+            destination:   lats[lats.length-1]+","+longs[lats.length-1],
+            waypoints: waypts,
+            optimizeWaypoints: false,
+            travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+
+            if (status === google.maps.DirectionsStatus.OK) {
+                var directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+                directionsDisplay.setMap(map);
+                directionsDisplay.setDirections(response);
+                directionsDisplay.su
+            } else {
+                window.alert('Directions request failed ' + status);
+            }
+        });
+
+
+        // Ajoute les marqueurs à la main, qui lorsque cliqués appellent le serveur
+        for (i = 0; i < lats.length; i++) {  
+            marker = new google.maps.Marker({  
+                position: new google.maps.LatLng(lats[i], longs[i]), 
+                map: map,
+                title: 'Hello World!'+i
+            });
+            marker.setLabel(""+(i+1));
+            marker.addListener('dblclick', function() {
+                map.setCenter(marker.getPosition());
+                alert("Position"+i);
+                //map.setZoom(8);
+    
+                $('#MainContent_HiddenField1').val(i);
+                $('#MainContent_Button1').trigger('click');
+    
+            });
+        }
+    }
+        </script>
+
+        <div id="map_canvas" style="width: 100%; height: 700px"></div>
     </div>
 
 </asp:Content>
