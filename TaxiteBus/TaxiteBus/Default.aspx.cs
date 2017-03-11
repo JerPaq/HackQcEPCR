@@ -75,5 +75,11 @@ namespace TaxiteBus
         {
             Response.Redirect("reservation.aspx");
         }
+
+        protected void btnTestClick(object sender, EventArgs e)
+        {
+            labelTest.InnerText = Context.User.Identity.Name;
+        }
+
     }
 }
