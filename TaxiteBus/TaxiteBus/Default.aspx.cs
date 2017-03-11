@@ -45,8 +45,8 @@ namespace TaxiteBus
             virgule = "";
             for (int i = 0; i < arretsBleu.Count(); i++)
             {
-                LiteralLatitudeBleu.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitudeBleu.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitudeBleu.Text += virgule + arretsBleu[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeBleu.Text += virgule + arretsBleu[i].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
 
@@ -54,8 +54,8 @@ namespace TaxiteBus
             virgule = "";
             for (int i = 0; i < arretsVert.Count(); i++)
             {
-                LiteralLatitudeVert.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitudeVert.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitudeVert.Text += virgule + arretsVert[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeVert.Text += virgule + arretsVert[i].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
 
@@ -63,8 +63,8 @@ namespace TaxiteBus
             virgule = "";
             for (int i = 0; i < arretsRouge.Count(); i++)
             {
-                LiteralLatitudeRouge.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitudeRouge.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitudeRouge.Text += virgule + arretsRouge[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeRouge.Text += virgule + arretsRouge[i].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
 
@@ -72,8 +72,8 @@ namespace TaxiteBus
             virgule = "";
             for (int i = 0; i < arretsMauve.Count(); i++)
             {
-                LiteralLatitudeMauve.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitudeMauve.Text += virgule + arretTaxiBus.Arrets[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitudeMauve.Text += virgule + arretsMauve[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeMauve.Text += virgule + arretsMauve[i].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
         }
