@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -44,6 +45,11 @@ namespace TaxiteBus
 
             string json = JsonConvert.SerializeObject(lstReservations.ToArray());
             System.IO.File.WriteAllText(@"D:\fichier.json", json);
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string json = System.IO.File.ReadAllText(@"D:\fichier.json");
         }
     }
 }
