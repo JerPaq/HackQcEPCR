@@ -81,8 +81,8 @@
     </div>
 
 
-    <div style="visibility: hidden;">
-        <asp:Button ID="btnReserver" runat="server" Text="Réserver" OnClick="btnReserver_Click" />
+    <div>
+        <label ID="labelTest" runat="server"></label>
     </div>
 
 

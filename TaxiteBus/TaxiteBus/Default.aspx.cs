@@ -15,7 +15,9 @@ namespace TaxiteBus
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
+            estConnecter();
+            
+            ArretsTaxiBus arretTaxiBus = new ArretsTaxiBus();
 
             List<String> points = new List<string>();
 
@@ -27,53 +29,26 @@ namespace TaxiteBus
             {
                 do
                 {
-                    alea = ((int)(random.NextDouble() * arretTaxiBus.Arrets.Length));
+                    alea = ((int)(random.NextDouble() * arretTaxiBus.jSONTaxiBus.features.Length));
                 } while (deja.Contains(alea));
                 deja.Add(alea);
-                LiteralLatitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
-        }
-
-        protected void EnregistrerReservationJSON(object sender, EventArgs e)
-        {
-            List<Reservation> lstReservations = new List<Reservation>();
-
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-            lstReservations.Add(
-                new Reservation(
-                    new ApplicationUser(),
-                    new JSONTaxiBus(),
-                    new JSONTaxiBus()));
-
-            string json = JsonConvert.SerializeObject(lstReservations.ToArray());
-            System.IO.File.WriteAllText(@"D:\fichier.json", json);
-        }
-
-        protected void ChargerReservationJSON(object sender, EventArgs e)
-        {
-            string json = System.IO.File.ReadAllText(@"D:\fichier.json");
-            List<Reservation> lstReservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
         }
 
         protected void btnReserver_Click(object sender, EventArgs e)
         {
             Response.Redirect("reservation.aspx");
+        }
+
+        private void estConnecter()
+        {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login");
+            }
         }
     }
 }
