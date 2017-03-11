@@ -29,5 +29,12 @@ namespace TaxiteBus.Models
 
             }
         }
+
+        private List<Features> featuresTries = new List<Features>();
+        public List<Features> FeaturesTries
+        {
+            get { return this.featuresTries; }
+            set { this.featuresTries = value; }
+        }
     }
 }

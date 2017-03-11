@@ -12,7 +12,7 @@ using TaxiteBus.Structures;
 namespace TaxiteBus.Models
 {
     public sealed class CreateurDeTrajets
-    { 
+    {  
         private static readonly CreateurDeTrajets instance = new CreateurDeTrajets();
 
         private CreateurDeTrajets() { }
@@ -26,6 +26,10 @@ namespace TaxiteBus.Models
         }
 
         private List<Trajet> trajets = new List<Trajet>();
+        public List<Trajet> Trajets
+        {
+            get { return this.trajets; }
+        }
 
 
         public void CalculerTrajets()
@@ -60,7 +64,7 @@ namespace TaxiteBus.Models
                 {
                     if (trajetCourrant.Reservations.Count == 4)
                     {
-                        GetOptimizedPath(trajetCourrant);
+                        this.TrierFeatures(trajetCourrant);
                         trajetCourrant = new Trajet();
                         
                         this.trajets.Add(trajetCourrant);
@@ -77,11 +81,11 @@ namespace TaxiteBus.Models
         }
 
         //---------------------------------------------------------------------
-        public static List<Features> GetOptimizedPath(Trajet argTrajet)
+        public void TrierFeatures(Trajet argTrajet)
         {
             String uRL = "https://maps.googleapis.com/maps/api/directions/json";
-            uRL += "?origin=48.4506343914947,-68.5289754901558";
-            uRL += "&destination=48.4506343914947,-68.5289754901558";
+            uRL += "?origin=48.4500474479996,-68.5221157196905";
+            uRL += "&destination=48.4500474479996,-68.5221157196905";
             uRL += "&waypoints=optimize:true";
             foreach (Features currentFeatures in argTrajet.Features)
             {
@@ -101,11 +105,14 @@ namespace TaxiteBus.Models
                 jSONCheminEntreDeuxPoints = ser.ReadObject(mem) as JSONCheminEntreDeuxPoints;
             }
 
+            List<Features> tries = new List<Features>();
+            argTrajet.FeaturesTries.Add(ArretsTaxiBus.Instance.Arrets.First(a=>a.properties.CODE=="Gare"));
+            foreach (int currentPoint in jSONCheminEntreDeuxPoints.routes[0].waypoint_order)
+            {
+                argTrajet.FeaturesTries.Add(argTrajet.Features.ElementAt(currentPoint));
 
-        //    jSONCheminEntreDeuxPoints.routes.
-
-            List<Features> result = new List<Features>();
-            return result;
+            }
+            argTrajet.FeaturesTries.Add(ArretsTaxiBus.Instance.Arrets.First(a => a.properties.CODE == "Gare"));
         }
 
         //---------------------------------------------------------------------
