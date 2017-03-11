@@ -23,7 +23,7 @@
             navigator.geolocation.getCurrentPosition(success);
         }
         else {
-            alert("Laissez-nous vous espionner!");
+            success(null);
         }
      
         function success(position) {

@@ -12,7 +12,7 @@ using TaxiteBus.Structures;
 namespace TaxiteBus.Models
 {
     public sealed class CreateurDeTrajets
-    {  
+    {
         private static readonly CreateurDeTrajets instance = new CreateurDeTrajets();
 
         private CreateurDeTrajets() { }
@@ -39,7 +39,9 @@ namespace TaxiteBus.Models
             List<String> points = new List<string>();
             Random random = new Random();
 
-            for (int i = 0; i <= 10; i++)
+
+            // Créer une liste de réservation au hasard
+            for (int i = 0; i <= 100; i++)
             {
                 lstReservations.Add(
                     new Reservation(
@@ -53,28 +55,24 @@ namespace TaxiteBus.Models
             ArretsTaxiBus arretsTaxiBus = ArretsTaxiBus.Instance;
             GeoCoordinate gare = new GeoCoordinate(48.4506343914947, -68.5289754901558);
 
-   
-            // Pour chaque ligne
-       //     foreach (String currentZonesLignesNoms in ArretsTaxiBus.ZONES_LIGNES_NOMS)
+
+            // Pour chaque ligne groupe les réservations par quatre
+            foreach (String currentZonesLignesNoms in ArretsTaxiBus.ZONES_LIGNES_NOMS)
             {
-                //Groupe les réservations par quatre
-                Trajet trajetCourrant  = new Trajet();
+                
+                Trajet trajetCourrant = new Trajet();
                 this.trajets.Add(trajetCourrant);
-                foreach (Reservation currentReservation in lstReservations.OrderByDescending(r=>gare.GetDistanceTo(new GeoCoordinate(r.Depart.geometry.coordinates[1], r.Depart.geometry.coordinates[0]))))
+                foreach (Reservation currentReservation in lstReservations.Where(r=>r.Depart.properties.Type_arret== currentZonesLignesNoms).OrderByDescending(r => gare.GetDistanceTo(new GeoCoordinate(r.Depart.geometry.coordinates[1], r.Depart.geometry.coordinates[0]))))
                 {
                     if (trajetCourrant.Reservations.Count == 4)
                     {
                         this.TrierFeatures(trajetCourrant);
                         trajetCourrant = new Trajet();
-                        
+
                         this.trajets.Add(trajetCourrant);
                     }
                     trajetCourrant.Reservations.Add(currentReservation);
                 }
-
-
-
-
             }
             // Pour chaque réservation dans moins d'une heures
             // Découper par quatre en optimisant à partir du plus loin de la guare
@@ -106,7 +104,7 @@ namespace TaxiteBus.Models
             }
 
             List<Features> tries = new List<Features>();
-            argTrajet.FeaturesTries.Add(ArretsTaxiBus.Instance.Arrets.First(a=>a.properties.CODE=="Gare"));
+            argTrajet.FeaturesTries.Add(ArretsTaxiBus.Instance.Arrets.First(a => a.properties.CODE == "Gare"));
             foreach (int currentPoint in jSONCheminEntreDeuxPoints.routes[0].waypoint_order)
             {
                 argTrajet.FeaturesTries.Add(argTrajet.Features.ElementAt(currentPoint));
