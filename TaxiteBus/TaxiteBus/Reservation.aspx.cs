@@ -49,23 +49,6 @@ namespace TaxiteBus
             //  this.legs.AddRange(GoogleMapManager.GetOptimizedPath(points, true).routes.First().legs);
         }
 
-        private void reserver(JSONTaxiBus pDepart, JSONTaxiBus pArriver, DateTime pHeure)
-        {
-            // Permet d'aller chercher l'utilisateur connecter (l'objet)
-            Reservation reservation = new Reservation();
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            reservation.client = user;
-            reservation.depart = pDepart;
-            reservation.arrivee = pArriver;
-            reservation.heure = pHeure;
-
-        }
-
-        protected void btnSoumettre_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void EnregistrerReservationJSON(object sender, EventArgs e)
         {
             List<Reservation> lstReservations = new List<Reservation>();
@@ -99,6 +82,23 @@ namespace TaxiteBus
         {
             string json = System.IO.File.ReadAllText(@"D:\fichier.json");
             List<Reservation> lstReservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
+        }
+
+        private void reserver(JSONTaxiBus pDepart, JSONTaxiBus pArriver, DateTime pHeure)
+        {
+            // Permet d'aller chercher l'utilisateur connecter (l'objet)
+            Reservation reservation = new Reservation();
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            reservation.client = user;
+            reservation.depart = pDepart;
+            reservation.arrivee = pArriver;
+            reservation.heure = pHeure;
+
+        }
+
+        protected void btnSoumettre_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
