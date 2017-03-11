@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaxiteBus.Models;
 using TaxiteBus.Structures;
 
 namespace TaxiteBus
@@ -11,6 +12,7 @@ namespace TaxiteBus
         {
             ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
 
+            CreateurDeTrajets.Instance.CalculerTrajets();
 
             List<String> points = new List<string>();
 

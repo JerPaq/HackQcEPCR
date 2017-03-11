@@ -56,6 +56,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -399,7 +400,7 @@
       <DependentUpon>201703110604259_nom2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\CreationDeTrajets.cs" />
+    <Compile Include="Models\CreateurDeTrajets.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Trajet.cs" />
@@ -427,6 +428,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Structures\ArretsTaxiBus.cs" />
+    <Compile Include="Structures\JSONCheminEntreDeuxPoints.cs" />
     <Compile Include="Structures\JSONTaxiBus.cs" />
     <Compile Include="TestGino.aspx.cs">
       <DependentUpon>TestGino.aspx</DependentUpon>
