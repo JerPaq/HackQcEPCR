@@ -47,9 +47,10 @@ namespace TaxiteBus
             System.IO.File.WriteAllText(@"D:\fichier.json", json);
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void ChargerReservationJSON(object sender, EventArgs e)
         {
             string json = System.IO.File.ReadAllText(@"D:\fichier.json");
+            List<Reservation> lstReservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
         }
     }
 }
