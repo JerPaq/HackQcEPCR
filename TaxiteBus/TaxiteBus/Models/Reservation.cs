@@ -14,7 +14,7 @@ namespace TaxiteBus.Models
         public ApplicationUser client { get; set; }
         public JSONTaxiBus depart { get; set; }
         public JSONTaxiBus arrivee { get; set; }
-        public string heure { get; set; }
+        public DateTime heure { get; set; }
 
         public Reservation() { }
 
