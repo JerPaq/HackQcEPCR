@@ -14,7 +14,7 @@ namespace TaxiteBus
 
             List<String> points = new List<string>();
 
-            taxibus.JSONTaxiBus.features = taxibus.JSONTaxiBus.features.Where(t => t.properties.Type_arret == "Taxibus - Zone verte").ToArray();
+            taxibus.jSONTaxiBus.features = taxibus.jSONTaxiBus.features.Where(t => t.properties.Type_arret == "Taxibus - Zone verte").ToArray();
             List<int> deja = new List<int>();
             Random random = new Random();
             int alea;
@@ -23,11 +23,11 @@ namespace TaxiteBus
             {
                 do
                 {
-                    alea = ((int)(random.NextDouble() * taxibus.JSONTaxiBus.features.Length));
+                    alea = ((int)(random.NextDouble() * taxibus.jSONTaxiBus.features.Length));
                 } while (deja.Contains(alea));
                 deja.Add(alea);
-                LiteralLatitude.Text += virgule + taxibus.JSONTaxiBus.features[alea].geometry.coordinates[1].ToString().Replace(',', '.');
-                LiteralLongitude.Text += virgule + taxibus.JSONTaxiBus.features[alea].geometry.coordinates[0].ToString().Replace(',', '.');
+                LiteralLatitude.Text += virgule + taxibus.jSONTaxiBus.features[alea].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude.Text += virgule + taxibus.jSONTaxiBus.features[alea].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
             //  this.legs.AddRange(GoogleMapManager.GetOptimizedPath(points, true).routes.First().legs);
