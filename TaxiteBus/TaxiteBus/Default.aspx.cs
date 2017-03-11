@@ -15,6 +15,8 @@ namespace TaxiteBus
 {
     public partial class _Default : Page
     {
+        public List<string> lstString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             estConnecter();
@@ -76,11 +78,6 @@ namespace TaxiteBus
             }
         }
 
-        protected void btnReserver_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("reservation.aspx");
-        }
-
         private void estConnecter()
         {
             if (!Context.User.Identity.IsAuthenticated)
@@ -99,14 +96,14 @@ namespace TaxiteBus
             return System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()).typeUtil == "CENTRAL";
         }
 
-        protected void BtnReserver_Click1(object sender, EventArgs e)
+        protected void BtnReserver_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/reservation");
         }
 
         protected void BtnConsulterReserves_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~consulterReservation");
+            Response.Redirect("~/consulterReservation");
         }
     }
 }
