@@ -11,7 +11,7 @@ namespace TaxiteBus.Structures
 {
     public class ArretsTaxiBus
     {
-        public static readonly String [] ZONES_LIGNES_NOMS = { "Taxibus - Zone verte", "Taxibus - Ligne rouge", "Taxibus - Zone bleue", "Taxibus - Zone verte" };
+        public static readonly String [] ZONES_LIGNES_NOMS = { "Taxibus - Zone verte", "Taxibus - Ligne rouge", "Taxibus - Zone bleue" };
 
         private static readonly ArretsTaxiBus instance = new ArretsTaxiBus();
         public static ArretsTaxiBus Instance

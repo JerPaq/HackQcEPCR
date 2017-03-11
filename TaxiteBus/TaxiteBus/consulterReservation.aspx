@@ -47,5 +47,5 @@
         </tr>
         <% } %>
     </table>
-    
+    <asp:ListBox ID="lstbxReservation" runat="server" Width="600px"></asp:ListBox>
 </asp:Content>
