@@ -19,7 +19,7 @@
     </address>
 
     <address>
-        <strong>Direction générale de la ville:</strong>   <a href="mailto:direction.generale@ville.rimouski.qc.ca">direction.generale@ville.rimouski.qc.ca</a><br />
+        <strong>Direction générale de la ville:</strong>  <a href="mailto:direction.generale@ville.rimouski.qc.ca">direction.generale@ville.rimouski.qc.ca</a><br />
         <strong>Communications de la ville:</strong> <a href="mailto:communications@ville.rimouski.qc.ca">communications@ville.rimouski.qc.ca</a>
     </address>
 
