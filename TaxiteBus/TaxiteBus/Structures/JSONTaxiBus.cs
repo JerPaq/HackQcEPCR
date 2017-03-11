@@ -6,7 +6,7 @@ using System.Web;
 namespace TaxiteBus.Structures
 {
 
-    // Type created for JSON at <<root>>>
+    // Type created for JSON at <<root>>
     [System.Runtime.Serialization.DataContractAttribute()]
     public partial class JSONTaxiBus
     {
@@ -57,13 +57,10 @@ namespace TaxiteBus.Structures
         public int OBJECTID;
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Nom;
+        public string CODE;
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Circuit;
-
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Remarque;
+        public string Type_arret;
 
         [System.Runtime.Serialization.DataMemberAttribute()]
         public double X;
@@ -72,13 +69,25 @@ namespace TaxiteBus.Structures
         public double Y;
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Horaire_SEM;
+        public string SEM_SEUL;
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Horaire_SAM;
+        public string FDS_SEUL;
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Horaire_DIM;
+        public string FDS_VERS_BUS;
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SEM_VERS_BUS;
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SEM_VERS_TAXI;
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FDS_VERS_TAXI;
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Notes;
     }
 
 }
