@@ -3,7 +3,8 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div>
-
+        
+      
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false">
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -18,7 +19,33 @@
 
             var markers = [];
             var directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
-            function success(position) {
+            var lats = [<asp:Literal ID="LiteralLatitude" runat="server"></asp:Literal >];
+            var longs = [<asp:Literal ID="LiteralLongitude" runat="server"></asp:Literal >];
+
+            var latsBleu = [<asp:Literal ID="LiteralLatitudeBleu" runat="server"></asp:Literal >];
+            var longsBleu = [<asp:Literal ID="LiteralLongitudeBleu" runat="server"></asp:Literal >];
+
+            var latsVert = [<asp:Literal ID="LiteralLatitudeVert" runat="server"></asp:Literal >];
+            var longsVert = [<asp:Literal ID="LiteralLongitudeVert" runat="server"></asp:Literal >];
+
+            var latsRouge = [<asp:Literal ID="LiteralLatitudeRouge" runat="server"></asp:Literal >];
+            var longsRouge = [<asp:Literal ID="LiteralLongitudeRouge" runat="server"></asp:Literal >];
+
+            var latsMauve = [<asp:Literal ID="LiteralLatitudeMauve" runat="server"></asp:Literal >];
+            var longsMauve = [<asp:Literal ID="LiteralLongitudeMauve" runat="server"></asp:Literal >];
+
+            function success(position)
+            {
+               
+                // C# remplie le tableau avec les points selon les points choisies dans TaxiBus.cs
+                chargerCarte(lats, longs,true);
+
+
+                
+            }
+
+            function chargerCarte(pLats, pLongs,afficherRoute)
+            {
                 var lat = 48.4525;//position.coords.latitude;
                 var long = -68.5232;//position.coords.longitude;
                 var city = "Rimouski";//position.coords.locality;
@@ -26,43 +53,42 @@
                 var myOptions = { center: myLatlng, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
                 var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-                // C# remplie le tableau avec les points selon les points choisies dans TaxiBus.cs
-                var lats = [<asp:Literal ID="LiteralLatitude" runat="server"></asp:Literal >];
-                var longs = [<asp:Literal ID="LiteralLongitude" runat="server"></asp:Literal >];
+                if (afficherRoute) {
+                    //Ici affiche les points avec le trajet entre.
+                    var waypts = [];
+                    for (i = 1; i < pLats.length - 1; i++) {
+                        waypts.push({
+                            location: pLats[i] + "," + pLongs[i],
+                            stopover: true
+                        });
+                    }
 
-                //Ici affiche les points avec le trajet entre.
-                var waypts = [];
-                for (i = 1; i < lats.length - 1; i++) {
-                    waypts.push({
-                        location: lats[i] + "," + longs[i],
-                        stopover: true
+                    var directionsService = new google.maps.DirectionsService;
+                    directionsService.route({
+                        origin: pLats[0] + "," + pLongs[0],
+                        destination: pLats[pLats.length - 1] + "," + pLongs[pLats.length - 1],
+                        waypoints: waypts,
+                        optimizeWaypoints: false,
+                        travelMode: google.maps.TravelMode.DRIVING
+                    }, function (response, status) {
+
+                        if (status === google.maps.DirectionsStatus.OK) {
+                            //var directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+                            directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+                            directionsDisplay.setMap(map);
+                            directionsDisplay.setDirections(response);
+                            directionsDisplay.su
+                        } else {
+                            window.alert('Directions request failed ' + status);
+                        }
                     });
+
                 }
 
-                var directionsService = new google.maps.DirectionsService;
-                directionsService.route({
-                    origin: lats[0] + "," + longs[0],
-                    destination: lats[lats.length - 1] + "," + longs[lats.length - 1],
-                    waypoints: waypts,
-                    optimizeWaypoints: false,
-                    travelMode: google.maps.TravelMode.DRIVING
-                }, function (response, status) {
-
-                    if (status === google.maps.DirectionsStatus.OK) {
-                        //var directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
-                        directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
-                        directionsDisplay.setMap(map);
-                        directionsDisplay.setDirections(response);
-                        directionsDisplay.su
-                    } else {
-                        window.alert('Directions request failed ' + status);
-                    }
-                });
-
                 // Ajoute les marqueurs à la main, qui lorsque cliqués appellent le serveur
-                for (i = 0; i < lats.length; i++) {
+                for (i = 0; i < pLats.length; i++) {
                     marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(lats[i], longs[i]),
+                        position: new google.maps.LatLng(pLats[i], pLongs[i]),
                         map: map,
                         title: 'Hello World!' + i
                     });
@@ -79,7 +105,6 @@
                     markers.push(marker);
                 }
             }
-
 
             //NOTE : Source : https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=fr
             //Le tableau de markers[] est défini en haut mais la "map" n'est pas déclarée
@@ -127,10 +152,21 @@
                 //alert(zone);
                 deleteMarkers();
                 retirerRoute();
-                alert(zone);
-                if (zone === "verte")
+                if (zone === "bleue")
                 {
-                    
+                    chargerCarte(latsBleu, longsBleu, false);
+                }
+                else if (zone === "verte")
+                {
+                    chargerCarte(latsVert, longsVert, false);
+                }
+                else if (zone === "rouge")
+                {
+                    chargerCarte(latsRouge, longsRouge, false);
+                }
+                else if (zone === "mauve")
+                {
+                    chargerCarte(latsMauve, longsMauve, false);
                 }
                 
             }
@@ -144,7 +180,7 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a onclick="afficherZone('bleu')" href="#">Zone bleu</a></li>
+                <li><a onclick="afficherZone('bleue')" href="#">Zone bleue</a></li>
                 <li><a onclick="afficherZone('verte')" href="#">Zone verte</a></li>
                 <li><a onclick="afficherZone('rouge')" href="#">Ligne rouge</a></li>
                 <li><a onclick="afficherZone('mauve')" href="#">Ligne mauve</a></li>
@@ -160,13 +196,13 @@
 
     <% if (utilEstClient()) {%>
 
-    <asp:Button ID="BtnReserver" runat="server" Text="Button" OnClick="BtnReserver_Click1" />
+    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" />
 
     <% } %>
 
     <% if (utilEstCentral()) {%>
 
-    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Button" OnClick="BtnConsulterReserves_Click" />
+    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Consulter les réservations" OnClick="BtnConsulterReserves_Click" />
 
     <% } %>
 
