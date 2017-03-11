@@ -375,6 +375,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703110458461_numeroUtil.cs" />
+    <Compile Include="Migrations\201703110458461_numeroUtil.Designer.cs">
+      <DependentUpon>201703110458461_numeroUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703110504459_prenom.cs" />
+    <Compile Include="Migrations\201703110504459_prenom.Designer.cs">
+      <DependentUpon>201703110504459_prenom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703110506377_nom.cs" />
+    <Compile Include="Migrations\201703110506377_nom.Designer.cs">
+      <DependentUpon>201703110506377_nom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703110536553_nom1.cs" />
+    <Compile Include="Migrations\201703110536553_nom1.Designer.cs">
+      <DependentUpon>201703110536553_nom1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,6 +430,20 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703110458461_numeroUtil.resx">
+      <DependentUpon>201703110458461_numeroUtil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703110504459_prenom.resx">
+      <DependentUpon>201703110504459_prenom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703110506377_nom.resx">
+      <DependentUpon>201703110506377_nom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703110536553_nom1.resx">
+      <DependentUpon>201703110536553_nom1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
