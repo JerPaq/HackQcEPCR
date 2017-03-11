@@ -25,7 +25,7 @@ namespace TaxiteBus.Structures
 
             string rep = GetRequest(uri);
 
-            JSONTaxiBus jSONTaxiBus = new JSONTaxiBus();
+            jSONTaxiBus = new JSONTaxiBus();
             using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(rep)))
             {
                 DataContractJsonSerializer ser = new DataContractJsonSerializer(jSONTaxiBus.GetType());
