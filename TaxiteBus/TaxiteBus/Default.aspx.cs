@@ -52,5 +52,10 @@ namespace TaxiteBus
             string json = System.IO.File.ReadAllText(@"D:\fichier.json");
             List<Reservation> lstReservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
         }
+
+        protected void btnDepart_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
