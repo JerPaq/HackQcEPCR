@@ -80,8 +80,10 @@
         <div id="map_canvas" style="width: 100%; height: 700px"></div>
     </div>
 
-    <div>
+
+    <div style="visibility: hidden;">
         <asp:Button ID="btnReserver" runat="server" Text="Réserver" OnClick="btnReserver_Click" />
     </div>
+
 
 </asp:Content>
