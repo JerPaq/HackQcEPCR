@@ -6,7 +6,7 @@ using System.Web;
 namespace TaxiteBus.Structures
 {
 
-    // Type created for JSON at <<root>>
+    // Type created for JSON at <<root>>>
     [System.Runtime.Serialization.DataContractAttribute()]
     public partial class JSONTaxiBus
     {
