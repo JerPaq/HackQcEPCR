@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1>Réservation</h1>
-
-    <table id="tableReserves">
+    <div>
+        <table id="tableReserves">
         <tr>
             <th>
                 Client
@@ -47,5 +47,14 @@
         </tr>
         <% } %>
     </table>
-    <asp:ListBox ID="lstbxReservation" runat="server" Width="600px"></asp:ListBox>
+    </div>    
+    <div>
+        <asp:ListBox ID="lstbxReservation" runat="server" Width="600px"></asp:ListBox>
+        <asp:Button ID="btnAjouter" runat="server" Text="Ajouter au trajet" />
+    </div>
+    <div>
+        <asp:ListBox ID="lstbxTrajet" runat="server" Width="600px"></asp:ListBox>
+        <asp:Button ID="btnCreer" runat="server" Text="Nouveau Trajet" />
+    </div>
+    
 </asp:Content>

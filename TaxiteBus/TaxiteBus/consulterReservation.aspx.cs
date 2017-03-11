@@ -14,20 +14,35 @@ namespace TaxiteBus
     {
         //Attributs
         public List<Reservation> lstReserves;
-        public Dictionary<String, Reservation> dictionnaire = new Dictionary<String, Reservation>();
+        public List<Trajet> lstTrajet;
+        public Dictionary<String, Reservation> dicReserv = new Dictionary<String, Reservation>();
 
         protected void Page_Load(object sender, EventArgs e)
+        {
+            afficherReserv();
+            afficherTrajet();
+        }
+
+        protected void afficherReserv()
         {
             lstReserves = ChargerReservationJSON();
             foreach (Reservation reserv in lstReserves)
             {
-                String cle = reserv.Depart.ToString() + " à " + reserv.Arrivee.ToString() + ", " + reserv.Heure.ToString();
-                dictionnaire.Add(cle, reserv);
+                if (!reserv.DansTrajet)
+                {
+                    String cle = reserv.Depart.ToString() + " à " + reserv.Arrivee.ToString() + ", " + reserv.Heure.ToString();
+                    dicReserv.Add(cle, reserv);
+                }
             }
-            lstbxReservation.DataSource = dictionnaire;
+            lstbxReservation.DataSource = dicReserv;
             lstbxReservation.DataTextField = "Key";
             lstbxReservation.DataValueField = "Value";
             lstbxReservation.DataBind();
+        }
+
+        protected void afficherTrajet()
+        {
+
         }
 
         protected List<Reservation> ChargerReservationJSON()
@@ -41,6 +56,24 @@ namespace TaxiteBus
             {
                 return new List<Reservation>();
             }
+        }
+
+        protected List<Trajet> ChargerTrajetJSON()
+        {
+            if (File.Exists("Trajets.json"))
+            {
+                string json = System.IO.File.ReadAllText("Trajets.json");
+                return JsonConvert.DeserializeObject<List<Trajet>>(json);
+            }
+            else
+            {
+                return new List<Trajet>();
+            }
+        }
+        protected void EnregistrerTrajetJSON(List<Trajet> lstTrajet)
+        {
+            string json = JsonConvert.SerializeObject(lstTrajet.ToArray());
+            System.IO.File.WriteAllText("Trajets.json", json);
         }
 
     }
