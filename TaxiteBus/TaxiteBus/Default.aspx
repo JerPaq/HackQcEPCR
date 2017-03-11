@@ -82,7 +82,6 @@
 
 
     <div>
-        <asp:Button ID="btnReserver" runat="server" Text="Réserver" OnClick="btnTestClick" />
         <label ID="labelTest" runat="server"></label>
     </div>
 
