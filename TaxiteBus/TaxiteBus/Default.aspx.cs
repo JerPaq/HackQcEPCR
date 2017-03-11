@@ -15,6 +15,8 @@ namespace TaxiteBus
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            estConnecter();
+            
             ArretsTaxiBus arretTaxiBus = new ArretsTaxiBus();
 
             List<String> points = new List<string>();
@@ -74,6 +76,14 @@ namespace TaxiteBus
         protected void btnReserver_Click(object sender, EventArgs e)
         {
             Response.Redirect("reservation.aspx");
+        }
+
+        private void estConnecter()
+        {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login");
+            }
         }
     }
 }

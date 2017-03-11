@@ -1,7 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Newtonsoft.Json;
+using TaxiteBus.Models;
 using TaxiteBus.Structures;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace TaxiteBus
 {
@@ -39,6 +47,13 @@ namespace TaxiteBus
                // virgule = ",";
             }
             //  this.legs.AddRange(GoogleMapManager.GetOptimizedPath(points, true).routes.First().legs);
+        }
+
+        private void reserver()
+        {
+            // Permet d'aller chercher l'utilisateur connecter (l'objet)
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
         }
     }
 }
