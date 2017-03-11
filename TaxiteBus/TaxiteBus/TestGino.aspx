@@ -23,7 +23,7 @@
             navigator.geolocation.getCurrentPosition(success);
         }
         else {
-            alert("Laissez-nous vous espionner!");
+            success(null);
         }
      
         function success(position) {
@@ -49,8 +49,8 @@
 
             var directionsService = new google.maps.DirectionsService;
             directionsService.route({
-                origin: lats[0]+","+longs[0],
-                destination:   lats[lats.length-1]+","+longs[lats.length-1],
+                origin: "48.4500474479996,-68.5221157196905",
+                destination: "48.4500474479996,-68.5221157196905",
                 waypoints: waypts,
                 optimizeWaypoints: false,
                 travelMode: google.maps.TravelMode.DRIVING
