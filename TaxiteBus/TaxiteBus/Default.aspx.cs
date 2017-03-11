@@ -40,6 +40,42 @@ namespace TaxiteBus
                 LiteralLongitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[0].ToString().Replace(',', '.');
                 virgule = ",";
             }
+
+            Features[] arretsBleu = arretTaxiBus.Arrets.Where(t => t.properties.Type_arret == "Taxibus - Zone bleue").ToArray();
+            virgule = "";
+            for (int i = 0; i < arretsBleu.Count(); i++)
+            {
+                LiteralLatitudeBleu.Text += virgule + arretsBleu[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeBleu.Text += virgule + arretsBleu[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+
+            Features[] arretsVert = arretTaxiBus.Arrets.Where(t => t.properties.Type_arret == "Taxibus - Zone verte").ToArray();
+            virgule = "";
+            for (int i = 0; i < arretsVert.Count(); i++)
+            {
+                LiteralLatitudeVert.Text += virgule + arretsVert[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeVert.Text += virgule + arretsVert[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+
+            Features[] arretsRouge = arretTaxiBus.Arrets.Where(t => t.properties.Type_arret == "Taxibus - Ligne rouge").ToArray();
+            virgule = "";
+            for (int i = 0; i < arretsRouge.Count(); i++)
+            {
+                LiteralLatitudeRouge.Text += virgule + arretsRouge[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeRouge.Text += virgule + arretsRouge[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+
+            Features[] arretsMauve = arretTaxiBus.Arrets.Where(t => t.properties.Type_arret == "Taxibus - Ligne mauve").ToArray();
+            virgule = "";
+            for (int i = 0; i < arretsMauve.Count(); i++)
+            {
+                LiteralLatitudeMauve.Text += virgule + arretsMauve[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitudeMauve.Text += virgule + arretsMauve[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
         }
 
         private void estConnecter()
