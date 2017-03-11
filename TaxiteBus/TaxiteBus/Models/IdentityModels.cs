@@ -13,6 +13,8 @@ namespace TaxiteBus.Models
     // Vous pouvez ajouter des données d'utilisateur pour l'utilisateur en ajoutant d'autres propriétés à votre classe d'utilisateur. Pour en savoir plus, visitez https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
+
+
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {
             // Notez que l'authenticationType doit correspondre à celui défini dans CookieAuthenticationOptions.AuthenticationType

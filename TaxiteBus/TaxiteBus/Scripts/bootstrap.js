@@ -70,7 +70,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     setTimeout(callback, duration)
     return this
   }
-
+//Test de modification d'un fichier en ajoutant un commentaire inutile
   $(function () {
     $.support.transition = transitionEnd()
   })
