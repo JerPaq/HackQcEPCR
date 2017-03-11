@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using TaxiteBus.Models;
 using TaxiteBus.Structures;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace TaxiteBus
 {
@@ -15,6 +17,12 @@ namespace TaxiteBus
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login");
+            }
+            // Permet d'aller chercher l'utilisateur connecter (l'objet)
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
         }
 
