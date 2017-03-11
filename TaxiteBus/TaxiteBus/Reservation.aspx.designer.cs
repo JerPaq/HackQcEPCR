@@ -10,7 +10,7 @@
 namespace TaxiteBus {
     
     
-    public partial class _Default {
+    public partial class reservation {
         
         /// <summary>
         /// Contrôle HiddenField1.
@@ -20,15 +20,6 @@ namespace TaxiteBus {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
-        
-        /// <summary>
-        /// Contrôle HiddenField3.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField3;
         
         /// <summary>
         /// Contrôle HiddenField2.
