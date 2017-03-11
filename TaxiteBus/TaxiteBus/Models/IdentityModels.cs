@@ -31,7 +31,7 @@ namespace TaxiteBus.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public ApplicationDbContext()   
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
