@@ -87,13 +87,13 @@
 
     <% if (utilEstClient()) {%>
 
-    <asp:Button ID="BtnReserver" runat="server" Text="Button" OnClick="BtnReserver_Click1" />
+    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" />
 
     <% } %>
 
     <% if (utilEstCentral()) {%>
 
-    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Button" OnClick="BtnConsulterReserves_Click" />
+    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Consulter les réservations" OnClick="BtnConsulterReserves_Click" />
 
     <% } %>
 
