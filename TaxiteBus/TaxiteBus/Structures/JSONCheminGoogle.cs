@@ -7,7 +7,7 @@ namespace TaxiteBus.Structures
 {
     // Type created for JSON at <<root>>
     [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class JSONCheminEntreDeuxPoints
+    public partial class JSONCheminGoogle
     {
 
         [System.Runtime.Serialization.DataMemberAttribute()]
