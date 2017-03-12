@@ -103,12 +103,18 @@ input[type="select"] {
 
 .citebusNom
 {
-    width: 330px;
+    width: 370px;
     padding-left: 5px;
 }
 
 .citebusHeure
 {
     width: 130px;
+    text-align: center;
+}
+
+.noArret
+{
+    width: 30px;
     text-align: center;
 }

@@ -210,10 +210,6 @@
     </div>
 
 
-    <div>
-        <label ID="labelTest" runat="server"></label>
-    </div>
-
     <% if (utilEstClient()) {%>
 
     <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" class="btn btn-primary" />

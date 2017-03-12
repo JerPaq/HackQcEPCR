@@ -20,9 +20,50 @@ namespace TaxiteBus
         {
             ArretsCiteBus arretsCiteBus = ArretsCiteBus.Instance;
 
+            List<int> deja = new List<int>();
+            Random random = new Random();
+            int alea;
+            String virgule = "";
+            for (int i = 0; i < 10; i++)
+            {
+                do
+                {
+                    alea = ((int)(random.NextDouble() * arretsCiteBus.Arrets.Length));
+                } while (deja.Contains(alea));
+                deja.Add(alea);
+                LiteralLatitude.Text += virgule + arretsCiteBus.Arrets[alea].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude.Text += virgule + arretsCiteBus.Arrets[alea].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+
+            //Circuit 11
             circuit11 = arretsCiteBus.Arrets.Where(t => t.properties.Circuit == 11).ToArray();
+            virgule = "";
+            for (int i = 0; i < circuit11.Count(); i++)
+            {
+                LiteralLatitude11.Text += virgule + circuit11[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude11.Text += virgule + circuit11[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+            //Circuit 21
             circuit21 = arretsCiteBus.Arrets.Where(t => t.properties.Circuit == 21).ToArray();
+            virgule = "";
+            for (int i = 0; i < circuit21.Count(); i++)
+            {
+                LiteralLatitude21.Text += virgule + circuit21[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude21.Text += virgule + circuit21[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+            //Circuit 31
             circuit31 = arretsCiteBus.Arrets.Where(t => t.properties.Circuit == 31).ToArray();
+            virgule = "";
+            for (int i = 0; i < circuit31.Count(); i++)
+            {
+                LiteralLatitude31.Text += virgule + circuit31[i].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude31.Text += virgule + circuit31[i].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+
         }
 
         protected string deuxDigits(TaxiteBus.Structures.CiteBus.Features arret)
