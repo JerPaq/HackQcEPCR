@@ -70,7 +70,8 @@ namespace TaxiteBus
         protected void btnSoumettre_Click(object sender, EventArgs e)
         {
             ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
-            reserver(arretTaxiBus.Arrets[1] , arretTaxiBus.Arrets[2], new DateTime(2017, 03, 13, 15, 53, 0));
+            arretTaxiBus.Arrets.Where(a=>a.properties.CODE == "Gare");
+            reserver(arretTaxiBus.Arrets[1] , arretTaxiBus.Arrets.Single(a => a.properties.CODE == "Gare"), new DateTime(2017, 03, 11, 23, 25, 0));
         }
 
         public void afficherCarte()

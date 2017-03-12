@@ -222,7 +222,7 @@
 
     <% if (utilEstCentral()) {%>
 
-    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Consulter les réservations" OnClick="BtnConsulterReserves_Click" />
+    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Consulter les réservations" OnClick="BtnConsulterReserves_Click" class="btn btn-primary" />
 
     <% } %>
 
