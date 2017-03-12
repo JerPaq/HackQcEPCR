@@ -34,6 +34,12 @@ namespace TaxiteBus.Structures
 
         [System.Runtime.Serialization.DataMemberAttribute()]
         public Properties properties;
+
+        public override string ToString()
+        {
+            return properties.CODE;
+        }
+
     }
 
     // Type created for JSON at <<root>> --> geometry

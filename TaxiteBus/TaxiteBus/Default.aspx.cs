@@ -15,7 +15,6 @@ namespace TaxiteBus
 {
     public partial class _Default : Page
     {
-        public List<string> lstString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
