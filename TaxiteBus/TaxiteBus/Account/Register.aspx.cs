@@ -15,8 +15,10 @@ namespace TaxiteBus.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+            String typeUtilisateur;
+            typeUtilisateur = (chkChauffeur.Checked) ? "CHAUFFEUR" : "CLIENT";
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, prenom = txtPrenom.Text, nom = txtNom.Text,
-                                               adresse = txtAdresse.Text, dateNaissance = txtNaissance.Text, PhoneNumber = txtTel.Text, typeUtil = "CLIENT"};
+                                               adresse = txtAdresse.Text, dateNaissance = txtNaissance.Text, PhoneNumber = txtTel.Text, typeUtil = "ADMIN"};
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
