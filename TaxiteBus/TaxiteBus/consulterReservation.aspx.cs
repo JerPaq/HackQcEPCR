@@ -31,6 +31,8 @@ namespace TaxiteBus
         
         protected void afficherTrajet()
         {
+            //Modifs par Gino
+            CreateurDeTrajets.Instance.CalculerTrajets(this.lstReserves);
             lstTrajet = CreateurDeTrajets.Instance.Trajets;
             foreach(Trajet trajet in lstTrajet)
             {
