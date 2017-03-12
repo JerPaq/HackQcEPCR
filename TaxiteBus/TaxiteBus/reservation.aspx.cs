@@ -96,31 +96,7 @@ namespace TaxiteBus
         }
 
 
-//    while(!tab_en_ordre)
 
-//    {
-
-//        tab_en_ordre = true;
-
-//        for(int i=0 ; i<taille-1 ; i++)
-
-//        {
-
-//            if(tab[i] > tab[i + 1])
-
-//            {
-
-//                swap(tab[i], tab[i + 1]);
-
-//        tab_en_ordre = false;
-
-//         }
-
-//}
-
-//taille--;
-
-//    }
         private List<List<double>> trier(List<List<double>> lstDouble2D)
         {
             bool tab_en_ordre = false;

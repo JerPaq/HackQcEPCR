@@ -22,8 +22,6 @@ namespace TaxiteBus
             
             ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
 
-            List<String> points = new List<string>();
-
             List<int> deja = new List<int>();
             Random random = new Random();
             int alea;
