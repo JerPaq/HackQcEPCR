@@ -1410,7 +1410,7 @@ html {
 
 body {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 1.7em;
     line-height: 1.846;
     color: #666666;
     background-color: #ffffff;
@@ -5651,7 +5651,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 
     .navbar-inverse .navbar-nav > li > a {
-        color: #b2dbfb;
+        color: #ffffff;
     }
 
         .navbar-inverse .navbar-nav > li > a:hover,
