@@ -48,8 +48,16 @@ namespace TaxiteBus
         protected void afficherChauffeur()
         {
             UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = UserManager.FindById(null);
-            //var user = UserManager.Find;
+            lstChauffeur = UserManager.Users.Where(u=>u.typeUtil == "CHAUFFEUR").ToList();
+            foreach(ApplicationUser Util in lstChauffeur)
+            {
+                String cle = Util.prenom + " " + Util.nom;
+                dicChauffeur.Add(cle, Util);
+            }
+            lstbxChauffeur.DataSource = dicChauffeur;
+            lstbxChauffeur.DataTextField = "Key";
+            lstbxChauffeur.DataValueField = "Value";
+            lstbxChauffeur.DataBind();
         }
 
         protected List<Reservation> ChargerReservationJSON()
