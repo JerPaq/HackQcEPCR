@@ -38,6 +38,13 @@ namespace TaxiteBus.Models
             set { this.heure = value; }
         }
 
+        private Boolean dansTrajet;
+        public Boolean DansTrajet
+        {
+            get { return this.dansTrajet; }
+            set { this.dansTrajet = value; }
+        }
+
         public Reservation() { }
 
         public Reservation(ApplicationUser pClient, Features pDepart, Features pArrivee, DateTime pHeure)
@@ -46,6 +53,7 @@ namespace TaxiteBus.Models
             this.depart = pDepart;
             this.arrivee = pArrivee;
             this.heure = pHeure;
+            this.dansTrajet = false;
         }
 
         public string getJsonString()
