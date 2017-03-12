@@ -145,3 +145,14 @@ input[type="select"] {
 {
     margin-bottom: 15px;
 }
+}
+.input-group {
+    float:left;
+    margin-right:20px;
+}
+.clear {
+    clear : both;
+}
+.center_group {
+    text-align: center;
+}
