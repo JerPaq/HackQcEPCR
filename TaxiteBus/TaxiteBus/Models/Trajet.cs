@@ -15,6 +15,13 @@ namespace TaxiteBus.Models
             set { this.reservations = value; }
         }
 
+        private ApplicationUser chauffeur;
+        public ApplicationUser Chauffeur
+        {
+            get { return this.chauffeur; }
+            set { this.chauffeur = value; }
+        }
+
         public HashSet<Features> Features
         {
             get
