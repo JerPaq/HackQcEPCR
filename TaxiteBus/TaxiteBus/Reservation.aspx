@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <%--<asp:Button ID="Button2" runat="server" OnClick="Button1_Click" Text="Button" Visible="true" CssClass="cache" />--%>
-     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAOPGtJ5td5b6e9wCW_bSsIgudCrUO-yDI&sensor=false&libraries=places"></script>
+     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAhThl9sgDoIqDncDB7UibSep8I3wL9UiY&sensor=false&libraries=places"></script>
         <script type="text/javascript">
             google.maps.event.addDomListener(window, 'load', function () {
                 var places = new google.maps.places.Autocomplete(document.getElementById('MainContent_txtPlaces'));
@@ -137,7 +137,8 @@
                         marker.setLabel("" + (i + 1));
                         marker.addListener('dblclick', function () {
                             map.setCenter(marker.getPosition());
-                            alert("Position");
+                            $('#MainContent_Button1').attr('disabled', false);
+                            //alert("Position");
                             //map.setZoom(8);
 
 

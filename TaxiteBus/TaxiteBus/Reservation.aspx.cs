@@ -27,12 +27,8 @@ namespace TaxiteBus
         {
             TxbDepart.Text = HiddenFieldDepart.Value;
             TxbDestination.Text = HiddenFieldDestinataire.Value;
+            
 
-            //if (txtPlaces.Text = "");
-            //{
-
-            //}
-           
         }
 
         protected void EnregistrerReservationJSON(List<Reservation> lstReservations)
@@ -98,6 +94,56 @@ namespace TaxiteBus
             }
         }
 
+
+//    while(!tab_en_ordre)
+
+//    {
+
+//        tab_en_ordre = true;
+
+//        for(int i=0 ; i<taille-1 ; i++)
+
+//        {
+
+//            if(tab[i] > tab[i + 1])
+
+//            {
+
+//                swap(tab[i], tab[i + 1]);
+
+//        tab_en_ordre = false;
+
+//         }
+
+//}
+
+//taille--;
+
+//    }
+        private List<List<double>> trier(List<List<double>> lstDouble2D)
+        {
+            bool tab_en_ordre = false;
+            int taille = lstDouble2D.Count;
+            while (!tab_en_ordre)
+            {
+                tab_en_ordre = true;
+                for (int i = 0; i < taille - 1; i++)
+                {
+                    if (lstDouble2D[i][0] > lstDouble2D[i+1][0])
+                    {
+                        List<Double> lstDoubleTemp = new List<double>();
+                        lstDoubleTemp = lstDouble2D[i];
+                        lstDouble2D[i] = lstDouble2D[i + 1];
+                        lstDouble2D[i + 1] = lstDoubleTemp;
+                        tab_en_ordre = false;
+                    }
+                }
+                taille--;
+                
+            }
+            return lstDouble2D;
+        }
+
         protected void Button1_Click(object sender, EventArgs e)
         {
             HiddenFieldBtnCliquer.Value = "depart";
@@ -135,8 +181,10 @@ namespace TaxiteBus
                 lstDistance.Add(valeur);
                 lstDistance.Add(i);
                 lstDistances.Add(lstDistance);
-
             }
+            lstDistances = trier(lstDistances);
+
+
             lstDistances[0].OrderBy(d => d);
             string virgule = "";
             LiteralLatitude.Text = "";
@@ -182,7 +230,8 @@ namespace TaxiteBus
                 lstDistances.Add(lstDistance);
 
             }
-            //lstDistances[0].OrderBy(d => d);
+            lstDistances = trier(lstDistances);
+
             string virgule = "";
             LiteralLatitude.Text = "";
             LiteralLongitude.Text = "";
