@@ -15,9 +15,7 @@ namespace TaxiteBus.Models
     public sealed class CreateurDeTrajets
     {
         private static readonly CreateurDeTrajets instance = new CreateurDeTrajets();
-
         private CreateurDeTrajets() { }
-
         public static CreateurDeTrajets Instance
         {
             get
@@ -26,6 +24,7 @@ namespace TaxiteBus.Models
             }
         }
 
+        //---------------------------------------------------------------------
         private List<Trajet> trajets = new List<Trajet>();
         public List<Trajet> Trajets
         {
@@ -36,17 +35,15 @@ namespace TaxiteBus.Models
             }
         }
 
-
+        //---------------------------------------------------------------------
         public void CalculerTrajets()
         {
-
             List<Reservation> lstReservations = ChargerReservationJSON();
             GeoCoordinate gare = new GeoCoordinate(48.4506343914947, -68.5289754901558);
 
             // Pour chaque ligne groupe les réservations par quatre
             foreach (String currentZonesLignesNoms in ArretsTaxiBus.ZONES_LIGNES_NOMS)
             {
-
                 Trajet trajetCourrant = new Trajet();
                 this.trajets.Add(trajetCourrant);
                 foreach (Reservation currentReservation
@@ -67,8 +64,6 @@ namespace TaxiteBus.Models
                 }
                 this.TrierFeatures(trajetCourrant);
             }
-            // Pour chaque réservation dans moins d'une heures
-            // Découper par quatre en optimisant à partir du plus loin de la guare
         }
 
         //---------------------------------------------------------------------
@@ -84,21 +79,19 @@ namespace TaxiteBus.Models
             }
             uRL += "&key=AIzaSyB16oFkTxj39_YELrwqLJr5TMMBTAIkPFc";
 
-
             Uri uri = new Uri(uRL);
-
             string rep = GetRequest(uri);
-            JSONCheminEntreDeuxPoints jSONCheminEntreDeuxPoints = new JSONCheminEntreDeuxPoints();
+            JSONCheminGoogle jSONCheminGoogle = new JSONCheminGoogle();
 
             using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(rep)))
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(jSONCheminEntreDeuxPoints.GetType());
-                jSONCheminEntreDeuxPoints = ser.ReadObject(mem) as JSONCheminEntreDeuxPoints;
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(jSONCheminGoogle.GetType());
+                jSONCheminGoogle = ser.ReadObject(mem) as JSONCheminGoogle;
             }
 
             List<Features> tries = new List<Features>();
             argTrajet.FeaturesTries.Add(ArretsTaxiBus.Instance.Arrets.First(a => a.properties.CODE == "Gare"));
-            foreach (int currentPoint in jSONCheminEntreDeuxPoints.routes[0].waypoint_order)
+            foreach (int currentPoint in jSONCheminGoogle.routes[0].waypoint_order)
             {
                 argTrajet.FeaturesTries.Add(argTrajet.Features.ElementAt(currentPoint));
 
@@ -132,8 +125,7 @@ namespace TaxiteBus.Models
             return answer;
         }
 
-
-
+        //---------------------------------------------------------------------
         private List<Reservation> ChargerReservationJSON()
         {
             List<Reservation> result = new List<Reservation>(); ;
@@ -165,5 +157,7 @@ namespace TaxiteBus.Models
             }
             return result;
         }
+
+        //---------------------------------------------------------------------
     }
 }
