@@ -38,10 +38,7 @@
             {
                
                 // C# remplie le tableau avec les points selon les points choisies dans TaxiBus.cs
-                chargerCarte(lats, longs,true);
-
-
-                
+                chargerCarte(null, null,false);
             }
 
             function chargerCarte(pLats, pLongs,afficherRoute)
@@ -104,6 +101,28 @@
                     });
                     markers.push(marker);
                 }
+
+                /*
+                var coordTrace = [];
+                for (i = 0; i < pLats.length; i++)
+                {
+                    triangleCoords.push(new google.maps.LatLng(pLats[i], pLongs[i]));
+                }
+
+
+                //TEST POLYGON
+                var polygonMap = new google.maps.Polygon({
+                    paths: coordTrace,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    name: 'name 1', // dynamic, not an official API property..
+                    map: map
+                });
+                polygonMap.setMap(map);
+                */
             }
 
             //NOTE : Source : https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=fr
@@ -173,6 +192,7 @@
 
 
         </script>
+        <br />
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Choisir une zone
@@ -196,7 +216,7 @@
 
     <% if (utilEstClient()) {%>
 
-    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" />
+    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" class="btn btn-primary" />
 
     <% } %>
 

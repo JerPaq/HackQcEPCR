@@ -6,15 +6,14 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web;
+using TaxiteBus.Structures.CiteBus;
 
 namespace TaxiteBus.Structures
 {
-    public class ArretsTaxiBus
+    public class ArretsCiteBus
     {
-        public static readonly String [] ZONES_LIGNES_NOMS = { "Taxibus - Zone verte", "Taxibus - Ligne rouge", "Taxibus - Zone bleue" };
-
-        private static readonly ArretsTaxiBus instance = new ArretsTaxiBus();
-        public static ArretsTaxiBus Instance
+        private static readonly ArretsCiteBus instance = new ArretsCiteBus();
+        public static ArretsCiteBus Instance
         {
             get
             {
@@ -22,8 +21,8 @@ namespace TaxiteBus.Structures
             }
         }
 
-        Features[] arrets;
-        public Features[] Arrets
+        TaxiteBus.Structures.CiteBus.Features[] arrets;
+        public TaxiteBus.Structures.CiteBus.Features[] Arrets
         {
             get
             {
@@ -31,19 +30,19 @@ namespace TaxiteBus.Structures
             }
         }
 
-        private ArretsTaxiBus()
+        private ArretsCiteBus()
         {
 
-            String uRL = "https://www.donneesquebec.ca/recherche/dataset/6715ead7-147a-4dcf-a534-f4e9e428905e/resource/3c40aae3-f662-4264-8ef7-26442181a3ad/download/arrettaxibus.json";
+            String uRL = "https://www.donneesquebec.ca/recherche/dataset/6715ead7-147a-4dcf-a534-f4e9e428905e/resource/cd0e470f-4719-4c14-b23a-03b2ae56bd69/download/arretcitebus.json";
             Uri uri = new Uri(uRL);
 
             string rep = GetRequest(uri);
 
-            JSONTaxiBus JSONTaxiBus = new JSONTaxiBus();
+            JSONCiteBus jSONCiteBus = new JSONCiteBus();
             using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(rep)))
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(JSONTaxiBus.GetType());
-                this.arrets = (ser.ReadObject(mem) as JSONTaxiBus).features;
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(jSONCiteBus.GetType());
+                this.arrets = (ser.ReadObject(mem) as JSONCiteBus).features;
             }
         }
 

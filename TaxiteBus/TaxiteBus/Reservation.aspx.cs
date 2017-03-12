@@ -73,7 +73,8 @@ namespace TaxiteBus
 
         protected void btnSoumettre_Click(object sender, EventArgs e)
         {
-            reserver(null, null, new DateTime(2017, 03, 13, 15, 53, 0));
+            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
+            reserver(arretTaxiBus.Arrets[1] , arretTaxiBus.Arrets[2], new DateTime(2017, 03, 13, 15, 53, 0));
         }
 
         public void afficherCarte()
