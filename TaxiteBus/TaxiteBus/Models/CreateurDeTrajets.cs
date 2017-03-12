@@ -168,20 +168,23 @@ namespace TaxiteBus.Models
             Random random = new Random();
 
             // Créer une liste de réservation au hasard
-            for (int i = 0; i <= 1; i++)
+            for (int i = 0; i <= 0; i++)
             {
                 Features depart = ArretsTaxiBus.Instance.Arrets[(int)(random.NextDouble() * ArretsTaxiBus.Instance.Arrets.Length)];
 
                 // Features arret = ArretsTaxiBus.Instance.Arrets.Where(r => depart.properties.Type_arret == r.properties.Type_arret).ToArray()[(int)(random.NextDouble() * ArretsTaxiBus.Instance.Arrets.Where(r => depart.properties.Type_arret == r.properties.Type_arret).Count())];
-
-                Features arret = ArretsTaxiBus.Instance.Arrets[(int)(random.NextDouble() * ArretsTaxiBus.Instance.Arrets.Length)];
+                Features arret = null;
+                do
+                {
+                   arret = ArretsTaxiBus.Instance.Arrets[(int)(random.NextDouble() * ArretsTaxiBus.Instance.Arrets.Length)];
+                } while (arret == depart);
 
                 result.Add(
                     new Reservation(
                         new ApplicationUser(),
                        depart,
                        arret,
-                       DateTime.Now.AddMinutes((int)(random.NextDouble() * 240))));
+                       DateTime.Now.AddMinutes((int)(random.NextDouble() * 50))));
             }
 
             return result;
