@@ -37,7 +37,7 @@ namespace TaxiteBus
             Random random = new Random();
 
             // Créer une liste de réservation au hasard
-            for (int i = 0; i <= 0; i++)
+            for (int i = 0; i <= 5; i++)
             {
                 Features depart = ArretsTaxiBus.Instance.Arrets[(int)(random.NextDouble() * ArretsTaxiBus.Instance.Arrets.Length)];
 

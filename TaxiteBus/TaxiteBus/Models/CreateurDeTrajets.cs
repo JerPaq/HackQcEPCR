@@ -64,6 +64,9 @@ namespace TaxiteBus.Models
                     // --
                     .OrderByDescending(r => gare.GetDistanceTo(new GeoCoordinate(r.Depart.geometry.coordinates[1], r.Depart.geometry.coordinates[0]))))
                 {
+                    if(,this.trajets.Any(t=>t.Reservations.Contains(currentReservation)))
+                        break;
+
                     if (trajetCourrant.Reservations.Count == 4)
                     {
                         this.TrierFeatures(trajetCourrant);
