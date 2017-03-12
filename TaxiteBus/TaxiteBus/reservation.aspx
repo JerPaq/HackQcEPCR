@@ -59,7 +59,7 @@
                     </button>--%>
             </div>
             <br />
-            <asp:Button ID="btnSoumettre" runat="server" Text="Soumettre" OnClick="btnSoumettre_Click" />
+            <asp:Button ID="btnSoumettre" runat="server" Text="Soumettre" OnClick="btnSoumettre_Click" CssClass="btn btn-primary" />
         </div>
         <div class="col-md-4"></div>
     </div>
