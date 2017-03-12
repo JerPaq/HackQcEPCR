@@ -41,7 +41,7 @@ namespace TaxiteBus.Models
         {
 
             List<Reservation> lstReservations = ChargerReservationJSON();
-             GeoCoordinate gare = new GeoCoordinate(48.4506343914947, -68.5289754901558);
+            GeoCoordinate gare = new GeoCoordinate(48.4506343914947, -68.5289754901558);
 
             // Pour chaque ligne groupe les réservations par quatre
             foreach (String currentZonesLignesNoms in ArretsTaxiBus.ZONES_LIGNES_NOMS)
@@ -133,14 +133,14 @@ namespace TaxiteBus.Models
         }
 
 
-  
+
         private List<Reservation> ChargerReservationJSON()
         {
             List<Reservation> result = new List<Reservation>(); ;
             if (File.Exists("reservations.json"))
             {
                 string json = System.IO.File.ReadAllText("reservations.json");
-                result =  JsonConvert.DeserializeObject<List<Reservation>>(json);
+                result = JsonConvert.DeserializeObject<List<Reservation>>(json);
             }
             else
             {

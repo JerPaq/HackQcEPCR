@@ -436,8 +436,10 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Structures\ArretsCiteBus.cs" />
     <Compile Include="Structures\ArretsTaxiBus.cs" />
     <Compile Include="Structures\JSONCheminEntreDeuxPoints.cs" />
+    <Compile Include="Structures\JSONCiteBus.cs" />
     <Compile Include="Structures\JSONTaxiBus.cs" />
     <Compile Include="TestGino.aspx.cs">
       <DependentUpon>TestGino.aspx</DependentUpon>
