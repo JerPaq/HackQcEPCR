@@ -210,6 +210,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\logo.png" />
     <Content Include="reservation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -239,6 +240,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="ServiceCitebus.aspx" />
     <Content Include="Site.Master" />
     <Content Include="TestGino.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -420,6 +422,13 @@
     <Compile Include="reservation.aspx.designer.cs">
       <DependentUpon>reservation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ServiceCitebus.aspx.cs">
+      <DependentUpon>ServiceCitebus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceCitebus.aspx.designer.cs">
+      <DependentUpon>ServiceCitebus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -435,8 +444,10 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Structures\ArretsCiteBus.cs" />
     <Compile Include="Structures\ArretsTaxiBus.cs" />
-    <Compile Include="Structures\JSONCheminEntreDeuxPoints.cs" />
+    <Compile Include="Structures\JSONCheminGoogle.cs" />
+    <Compile Include="Structures\JSONCiteBus.cs" />
     <Compile Include="Structures\JSONTaxiBus.cs" />
     <Compile Include="TestGino.aspx.cs">
       <DependentUpon>TestGino.aspx</DependentUpon>
@@ -455,7 +466,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

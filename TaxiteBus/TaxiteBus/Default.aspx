@@ -38,10 +38,7 @@
             {
                
                 // C# remplie le tableau avec les points selon les points choisies dans TaxiBus.cs
-                chargerCarte(lats, longs,true);
-
-
-                
+                chargerCarte(null, null,false);
             }
 
             function chargerCarte(pLats, pLongs,afficherRoute)
@@ -104,6 +101,28 @@
                     });
                     markers.push(marker);
                 }
+
+                /*
+                var coordTrace = [];
+                for (i = 0; i < pLats.length; i++)
+                {
+                    triangleCoords.push(new google.maps.LatLng(pLats[i], pLongs[i]));
+                }
+
+
+                //TEST POLYGON
+                var polygonMap = new google.maps.Polygon({
+                    paths: coordTrace,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    name: 'name 1', // dynamic, not an official API property..
+                    map: map
+                });
+                polygonMap.setMap(map);
+                */
             }
 
             //NOTE : Source : https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=fr
