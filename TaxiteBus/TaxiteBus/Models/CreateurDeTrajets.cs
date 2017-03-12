@@ -39,6 +39,9 @@ namespace TaxiteBus.Models
         public void CalculerTrajets()
         {
             List<Reservation> lstReservations = this.ChargerReservationJSON();
+            // Modif par Jérôme
+            List<Reservation> lstTraitee = new List<Reservation>();
+            // --
 
             this.DiviserReservationSurDeuxZones(lstReservations);
 
@@ -52,7 +55,10 @@ namespace TaxiteBus.Models
                 foreach (Reservation currentReservation
                     in lstReservations.Where(r => (r.Depart.properties.Type_arret == currentZonesLignesNoms || r.Arrivee.properties.Type_arret == currentZonesLignesNoms)
                                                 && r.Heure < DateTime.Now.AddHours(1)
-                                                && !r.DansTrajet)
+                                                && !r.DansTrajet
+                                                // Modif par Jérôme
+                                                && !(lstTraitee.Contains(r)))
+                                                // --
                     .OrderByDescending(r => gare.GetDistanceTo(new GeoCoordinate(r.Depart.geometry.coordinates[1], r.Depart.geometry.coordinates[0]))))
                 {
                     if (trajetCourrant.Reservations.Count == 4)
@@ -63,12 +69,16 @@ namespace TaxiteBus.Models
                         this.trajets.Add(trajetCourrant);
                     }
                     trajetCourrant.Reservations.Add(currentReservation);
+                    // Modif par Jérôme
+                    lstTraitee.Add(currentReservation);
+                    // --
                     currentReservation.DansTrajet = true;
                 }
                 if (trajetCourrant.Features.Count != 0)
                     this.TrierFeatures(trajetCourrant);
                 else
                     this.trajets.Remove(trajetCourrant);
+
             }
         }
 
@@ -77,7 +87,9 @@ namespace TaxiteBus.Models
         {
             foreach (Reservation currentReservation in lstReservations
                 .Where(r => r.Heure < DateTime.Now.AddHours(1)
-                && r.Depart.properties.Type_arret != r.Arrivee.properties.Type_arret).ToList())
+                && r.Depart.properties.Type_arret != r.Arrivee.properties.Type_arret
+                && r.Depart.properties.Type_arret != "Point de rabattement"
+                && r.Arrivee.properties.Type_arret != "Point de rabattement").ToList())
             {
                 Reservation newReservation = new Reservation(currentReservation.Client, ArretsTaxiBus.Instance.Arrets.First(a => a.properties.CODE == "Gare"), currentReservation.Arrivee, currentReservation.Heure);
                 currentReservation.Arrivee = ArretsTaxiBus.Instance.Arrets.First(a => a.properties.CODE == "Gare");
