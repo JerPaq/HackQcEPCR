@@ -51,15 +51,15 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Service Taxibus</a></li>
                         <li><a runat="server" href="~/ServiceCitebus">Service Citébus</a></li>
-                        <li><a runat="server" href="~/">Accueil</a></li>
                         <li><a runat="server" href="~/About">À propos</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Inscrire</a></li>
+                                <li><a runat="server" href="~/Account/Register">S'inscrire</a></li>
                                 <li><a runat="server" href="~/Account/Login">Se connecter</a></li>
                             </ul>
                         </AnonymousTemplate>
@@ -80,7 +80,10 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - TaxiteBus</p>
+                <p>&copy; <%: DateTime.Now.Year %> - E.P.C.R. - TaxitéBus</p>
+                <a class="lienBasPage" href="http://www.ville.rimouski.qc.ca/webconcepteurcontent63/000022830000/upload/citoyens/circulation/pdf_taxi/Zones_et_lignes_taxibus.pdf">Aperçu de l'ensemble du réseau</a>
+                <br />
+                <a class="lienBasPage" href="http://www.ville.rimouski.qc.ca/fr/citoyens/nav/circulation/Rimouskibus.html">Site officiel de la société des transports de Rimouski</a>
             </footer>
         </div>
     </form>

@@ -20,9 +20,6 @@
             <th>
                 Heure
             </th>
-            <th>
-                Chauffeur
-            </th>
         </tr>
         <% foreach (TaxiteBus.Models.Reservation reserve in lstReserves) { %>
         <tr>
@@ -41,20 +38,17 @@
             <td>
                 <%= reserve.Heure.ToString() %>
             </td>
-            <td>
-                Chauffeur
-            </td>
         </tr>
         <% } %>
     </table>
     </div>    
     <div>
         <asp:ListBox ID="lstbxTrajet" runat="server" Width="600px"></asp:ListBox>
-        <asp:Button ID="btnAssigne" runat="server" Text="Assigner à :" />
+        <asp:Button ID="btnAssigne" runat="server" Text="Assigner à :" CssClass="btn btn-primary" />
     </div>
     <div>
         <asp:ListBox ID="lstbxChauffeur" runat="server" Width="600px"></asp:ListBox>
-        <asp:Button ID="btnRetirerTrajet" runat="server" Text="Retirer trajet" />
+        <asp:Button ID="btnRetirerTrajet" runat="server" Text="Retirer trajet" CssClass="btn btn-primary" />
     </div>
     
 </asp:Content>

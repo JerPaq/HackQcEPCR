@@ -84,3 +84,64 @@ input[type="select"] {
         font-size: 13px;
         font-weight: 300;
 }
+
+.tblCitebus
+{
+    border: 2px solid black;
+}
+
+.tblCitebus td
+{
+    border: 1px solid black;
+}
+
+.tblCitebus th
+{
+    background-color: lightgrey;
+    border: 1px solid black;
+}
+
+.citebusNom
+{
+    width: 370px;
+    padding-left: 5px;
+}
+
+.citebusHeure
+{
+    width: 130px;
+    text-align: center;
+}
+
+.noArret
+{
+    width: 30px;
+    text-align: center;
+}
+
+.grosLien
+{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.divSaisieConnexion
+{
+    min-width: 805px;
+}
+
+.lienBasPage
+{
+    font-size: 0.7em !important;
+    margin-top: 0px;
+}
+
+.boutonReservation
+{
+    margin-top: 15px;
+}
+
+.comboBoxMap
+{
+    margin-bottom: 15px;
+}

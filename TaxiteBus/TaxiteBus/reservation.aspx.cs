@@ -10,51 +10,38 @@ using TaxiteBus.Models;
 using TaxiteBus.Structures;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Device.Location;
 
 namespace TaxiteBus
 {
 
     public partial class reservation : System.Web.UI.Page
     {
+        ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
+
+        
         public List<string> lstString;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
-            string coorDepart = this.HiddenField1.Value;
-            string[] tblCoorDepart = coorDepart.Split(',');
-            string coorDestination = this.HiddenField2.Value;
-            string[] tblCoorDestinatition = coorDestination.Split(',');
-            List<String> points = new List<string>();
-
+            TxbDepart.Text = HiddenFieldDepart.Value;
+            TxbDestination.Text = HiddenFieldDestinataire.Value;
             
-            List<int> deja = new List<int>();
-            int nbArret = (int)(arretTaxiBus.Arrets.Length);
 
-            //for ()
-            //{
-
-            //}
-
-            String virgule = "";
-            for (int i = 0; i < 10; i++)
-            {
-                //do
-                //{
-                    //alea = ((int)(arretTaxiBus.jSONTaxiBus.features.Length));
-                //} while (deja.Contains(alea));
-                //deja.Add(alea);
-                //LiteralLatitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[1].ToString().Replace(',', '.');
-                //LiteralLongitude.Text += virgule + arretTaxiBus.jSONTaxiBus.features[alea].geometry.coordinates[0].ToString().Replace(',', '.');
-               // virgule = ",";
-            }
-            //  this.legs.AddRange(GoogleMapManager.GetOptimizedPath(points, true).routes.First().legs);
         }
 
         protected void EnregistrerReservationJSON(List<Reservation> lstReservations)
         { 
             string json = JsonConvert.SerializeObject(lstReservations.ToArray());
             System.IO.File.WriteAllText("reservations.json", json);
+        }
+
+        private double calculerDistanceDepart(double lat, double lon, double lat2, double lon2)
+        {
+            var coord1 = new GeoCoordinate(lat, lon);
+            var coord2 = new GeoCoordinate(lat2, lon2);
+            return coord1.GetDistanceTo(coord2);
         }
 
         protected List<Reservation> ChargerReservationJSON()
@@ -83,7 +70,155 @@ namespace TaxiteBus
         protected void btnSoumettre_Click(object sender, EventArgs e)
         {
             ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
-            reserver(arretTaxiBus.Arrets[1] , arretTaxiBus.Arrets[2], new DateTime(2017, 03, 13, 15, 53, 0));
+            arretTaxiBus.Arrets.Where(a=>a.properties.CODE == "Gare");
+            reserver(arretTaxiBus.Arrets[1] , arretTaxiBus.Arrets.Single(a => a.properties.CODE == "Gare"), new DateTime(2017, 03, 11, 23, 25, 0));
+        }
+
+        public void afficherCarte()
+        {
+            List<String> points = new List<string>();
+
+            List<int> deja = new List<int>();
+            Random random = new Random();
+            int alea;
+            String virgule = "";
+            for (int i = 0; i < 10; i++)
+            {
+                do
+                {
+                    alea = ((int)(random.NextDouble() * arretTaxiBus.Arrets.Length));
+                } while (deja.Contains(alea));
+                deja.Add(alea);
+                LiteralLatitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude.Text += virgule + arretTaxiBus.Arrets[alea].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+        }
+
+
+
+        private List<List<double>> trier(List<List<double>> lstDouble2D)
+        {
+            bool tab_en_ordre = false;
+            int taille = lstDouble2D.Count;
+            while (!tab_en_ordre)
+            {
+                tab_en_ordre = true;
+                for (int i = 0; i < taille - 1; i++)
+                {
+                    if (lstDouble2D[i][0] > lstDouble2D[i+1][0])
+                    {
+                        List<Double> lstDoubleTemp = new List<double>();
+                        lstDoubleTemp = lstDouble2D[i];
+                        lstDouble2D[i] = lstDouble2D[i + 1];
+                        lstDouble2D[i + 1] = lstDoubleTemp;
+                        tab_en_ordre = false;
+                    }
+                }
+                taille--;
+                
+            }
+            return lstDouble2D;
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            HiddenFieldBtnCliquer.Value = "depart";
+            string coorDepart = this.HiddenField1.Value;
+            string[] tblCoorDepart = coorDepart.Split(',');
+            double coorDepartLat = Double.Parse(tblCoorDepart[0].Replace('.', ','));
+            double coorDepartLong = Double.Parse(tblCoorDepart[1].Replace('.', ','));
+            
+            if (this.HiddenField2.Value != "")
+            {
+                string coorDestination = this.HiddenField2.Value;
+                string[] tblCoorDestination = coorDestination.Split(',');
+                double coorDestitLat = Double.Parse(tblCoorDestination[0].Replace('.', ','));
+                double coorDestiLong = Double.Parse(tblCoorDestination[1].Replace('.', ','));
+            }
+            
+            List<String> points = new List<string>();
+
+
+            int nbArret = (int)(arretTaxiBus.Arrets.Length);
+
+
+            int index = 0;
+            List<List<double>> lstDistances = new List<List<double>>();
+            for (int i = 0; i < nbArret - 1; i++)
+            {
+                double lat = arretTaxiBus.Arrets[i].geometry.coordinates[0];
+                double lon = arretTaxiBus.Arrets[i].geometry.coordinates[1];
+                double lat2 = arretTaxiBus.Arrets[i + 1].geometry.coordinates[0];
+                double lon2 = arretTaxiBus.Arrets[i + 1].geometry.coordinates[1];
+
+                double valeur = calculerDistanceDepart(coorDepartLat, coorDepartLong, coorDepartLat, coorDepartLong) -
+                     calculerDistanceDepart(coorDepartLat, coorDepartLong, lat2, lon2);
+                List<double> lstDistance = new List<double>();
+                lstDistance.Add(valeur);
+                lstDistance.Add(i);
+                lstDistances.Add(lstDistance);
+            }
+            lstDistances = trier(lstDistances);
+
+
+            lstDistances[0].OrderBy(d => d);
+            string virgule = "";
+            LiteralLatitude.Text = "";
+            LiteralLongitude.Text = "";
+            
+            for (int i = 0; i < 5; i++)
+            {
+                LiteralLatitude.Text += virgule + arretTaxiBus.Arrets[(int)lstDistances[i][1]].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude.Text += virgule + arretTaxiBus.Arrets[(int)lstDistances[i][1]].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            HiddenFieldBtnCliquer.Value = "destination";
+            string coorDepart = this.HiddenField2.Value;
+            string[] tblCoorDepart = coorDepart.Split(',');
+            double coorDepartLat = Double.Parse(tblCoorDepart[0].Replace('.', ','));
+            double coorDepartLong = Double.Parse(tblCoorDepart[1].Replace('.', ','));
+            string coorDestination = this.HiddenField2.Value;
+            string[] tblCoorDestination = coorDestination.Split(',');
+            List<String> points = new List<string>();
+
+
+            int nbArret = (int)(arretTaxiBus.Arrets.Length);
+
+
+            int index = 0;
+            List<List<double>> lstDistances = new List<List<double>>();
+            for (int i = 0; i < nbArret - 1; i++)
+            {
+                double lat = arretTaxiBus.Arrets[i].geometry.coordinates[0];
+                double lon = arretTaxiBus.Arrets[i].geometry.coordinates[1];
+                double lat2 = arretTaxiBus.Arrets[i + 1].geometry.coordinates[0];
+                double lon2 = arretTaxiBus.Arrets[i + 1].geometry.coordinates[1];
+
+                double valeur = calculerDistanceDepart(coorDepartLat, coorDepartLong, coorDepartLat, coorDepartLong) -
+                     calculerDistanceDepart(coorDepartLat, coorDepartLong, lat2, lon2);
+                List<double> lstDistance = new List<double>();
+                lstDistance.Add(valeur);
+                lstDistance.Add(i);
+                lstDistances.Add(lstDistance);
+
+            }
+            lstDistances = trier(lstDistances);
+
+            string virgule = "";
+            LiteralLatitude.Text = "";
+            LiteralLongitude.Text = "";
+        
+            for (int i = 0; i < 5; i++)
+            {
+                LiteralLatitude2.Text += virgule + arretTaxiBus.Arrets[(int)lstDistances[i][1]].geometry.coordinates[1].ToString().Replace(',', '.');
+                LiteralLongitude2.Text += virgule + arretTaxiBus.Arrets[(int)lstDistances[i][1]].geometry.coordinates[0].ToString().Replace(',', '.');
+                virgule = ",";
+            }
         }
     }
 }

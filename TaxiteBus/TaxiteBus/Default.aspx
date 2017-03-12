@@ -87,7 +87,7 @@
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(pLats[i], pLongs[i]),
                         map: map,
-                        title: 'Hello World!' + i
+                        title: 'Arrêt Taxibus'
                     });
                     marker.setLabel("" + (i + 1));
                     marker.addListener('dblclick', function () {
@@ -101,28 +101,6 @@
                     });
                     markers.push(marker);
                 }
-
-                /*
-                var coordTrace = [];
-                for (i = 0; i < pLats.length; i++)
-                {
-                    triangleCoords.push(new google.maps.LatLng(pLats[i], pLongs[i]));
-                }
-
-
-                //TEST POLYGON
-                var polygonMap = new google.maps.Polygon({
-                    paths: coordTrace,
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 1,
-                    fillColor: '#FF0000',
-                    fillOpacity: 0.35,
-                    name: 'name 1', // dynamic, not an official API property..
-                    map: map
-                });
-                polygonMap.setMap(map);
-                */
             }
 
             //NOTE : Source : https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=fr
@@ -194,7 +172,7 @@
         </script>
         <br />
         <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button class="btn btn-default dropdown-toggle comboBoxMap" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Choisir une zone
    
                 <span class="caret"></span>
@@ -206,23 +184,19 @@
                 <li><a onclick="afficherZone('mauve')" href="#">Ligne mauve</a></li>
             </ul>
         </div>
-        <div id="map_canvas" style="width: 100%; height: 400px"></div>
+        <div id="map_canvas" style="width: 100%; height: 525px"></div>
     </div>
 
-
-    <div>
-        <label ID="labelTest" runat="server"></label>
-    </div>
 
     <% if (utilEstClient()) {%>
 
-    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" class="btn btn-primary" />
+    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" class="btn btn-primary boutonReservation" />
 
     <% } %>
 
     <% if (utilEstCentral()) {%>
 
-    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Consulter les réservations" OnClick="BtnConsulterReserves_Click" />
+    <asp:Button ID="BtnConsulterReserves" runat="server" Text="Consulter les réservations" OnClick="BtnConsulterReserves_Click" class="btn btn-primary boutonReservation" />
 
     <% } %>
 

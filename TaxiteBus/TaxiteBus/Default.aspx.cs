@@ -15,15 +15,12 @@ namespace TaxiteBus
 {
     public partial class _Default : Page
     {
-        public List<string> lstString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             estConnecter();
             
             ArretsTaxiBus arretTaxiBus = ArretsTaxiBus.Instance;
-
-            List<String> points = new List<string>();
 
             List<int> deja = new List<int>();
             Random random = new Random();
