@@ -13,24 +13,6 @@ namespace TaxiteBus {
     public partial class consulterReservation {
         
         /// <summary>
-        /// Contrôle lstbxReservation.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstbxReservation;
-        
-        /// <summary>
-        /// Contrôle btnAjouter.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAjouter;
-        
-        /// <summary>
         /// Contrôle lstbxTrajet.
         /// </summary>
         /// <remarks>
@@ -40,12 +22,30 @@ namespace TaxiteBus {
         protected global::System.Web.UI.WebControls.ListBox lstbxTrajet;
         
         /// <summary>
-        /// Contrôle btnCreer.
+        /// Contrôle btnAssigne.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreer;
+        protected global::System.Web.UI.WebControls.Button btnAssigne;
+        
+        /// <summary>
+        /// Contrôle lstbxChauffeur.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lstbxChauffeur;
+        
+        /// <summary>
+        /// Contrôle btnRetirerTrajet.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRetirerTrajet;
     }
 }

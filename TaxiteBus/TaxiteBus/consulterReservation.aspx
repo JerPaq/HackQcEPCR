@@ -49,12 +49,12 @@
     </table>
     </div>    
     <div>
-        <asp:ListBox ID="lstbxReservation" runat="server" Width="600px"></asp:ListBox>
-        <asp:Button ID="btnAjouter" runat="server" Text="Ajouter au trajet" />
+        <asp:ListBox ID="lstbxTrajet" runat="server" Width="600px"></asp:ListBox>
+        <asp:Button ID="btnAssigne" runat="server" Text="Assigner à :" />
     </div>
     <div>
-        <asp:ListBox ID="lstbxTrajet" runat="server" Width="600px"></asp:ListBox>
-        <asp:Button ID="btnCreer" runat="server" Text="Nouveau Trajet" />
+        <asp:ListBox ID="lstbxChauffeur" runat="server" Width="600px"></asp:ListBox>
+        <asp:Button ID="btnRetirerTrajet" runat="server" Text="Retirer trajet" />
     </div>
     
 </asp:Content>
