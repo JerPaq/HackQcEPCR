@@ -21,7 +21,6 @@
                     alert(mesg);
                 });
 
-                
                 google.maps.event.addListener(places2, 'place_changed', function () {
                     var place = places2.getPlace();
                     var address = place.formatted_address;

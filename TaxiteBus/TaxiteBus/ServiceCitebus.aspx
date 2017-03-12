@@ -32,7 +32,8 @@
 
         function success(position)
         {
-            chargerCarte(null, null, false);
+            //Sélection sur le Circuit 11 par défaut
+            chargerCarte(lats11, longs11, false);
         }
 
         function afficherCircuit(noCircuit)
@@ -65,7 +66,7 @@
             var long = -68.5232;//position.coords.longitude;
             var city = "Rimouski";//position.coords.locality;
             var myLatlng = new google.maps.LatLng(lat, long);
-            var myOptions = { center: myLatlng, zoom: 12, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var myOptions = { center: myLatlng, zoom: 13, mapTypeId: google.maps.MapTypeId.ROADMAP };
             var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
             if (afficherRoute)
@@ -111,10 +112,10 @@
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(pLats[i], pLongs[i]),
                     map: map,
-                    title: 'Hello World!' + i
+                    title: 'Arrêt Citébus'
                 });
 
-                marker.setLabel();
+                marker.setLabel("" + (i + 1));
                 marker.addListener('dblclick', function ()
                 {
                     map.setCenter(marker.getPosition());
@@ -172,7 +173,7 @@
             }
         }
     </script>
-
+    <div id="hautPage"></div>
     <h2>Service Citébus</h2>
 
     <div id="map_canvas" style="height:500px;width:500px"></div>
@@ -204,7 +205,7 @@
                 <li><b>11:16</b> à <b>13:15</b></li>
                 <li><b>16:16</b> à <b>18:15</b></li>
             </ul>
-            <a href="http://www.ville.rimouski.qc.ca/webconcepteurcontent63/000022830000/upload/citoyens/circulation/Carte_circuit_11.pdf">Voir la carte du trajet</a>
+            <a class="grosLien" href="http://www.ville.rimouski.qc.ca/webconcepteurcontent63/000022830000/upload/citoyens/circulation/Carte_circuit_11.pdf">Carte du trajet</a>
             <table class="tblCitebus">
                 <tr>
                     <th class="noArret">
@@ -243,7 +244,7 @@
             <h3>Circuit 21</h3>
             <b>Tout les jours</b> de <b>06:45</b> à <b>18:15</b>
             <br />
-            <a href="http://www.ville.rimouski.qc.ca/webconcepteurcontent63/000022830000/upload/citoyens/circulation/Carte_circuit_21.pdf">Voir la carte du trajet</a>
+            <a class="grosLien" href="http://www.ville.rimouski.qc.ca/webconcepteurcontent63/000022830000/upload/citoyens/circulation/Carte_circuit_21.pdf">Carte du trajet</a>
             <table class="tblCitebus">
                 <tr>
                     <th class="noArret">
@@ -278,7 +279,7 @@
             <br />
             Le <b>samedi et dimanche</b> de <b>07:15</b> à <b>18:15</b>
             <br />
-            <a href="http://www.ville.rimouski.qc.ca/webconcepteurcontent63/000022830000/upload/citoyens/circulation/Carte_circuit_31.pdf">Voir la carte du trajet</a>
+            <a class="grosLien" href="http://www.ville.rimouski.qc.ca/webconcepteurcontent63/000022830000/upload/citoyens/circulation/Carte_circuit_31.pdf">Carte du trajet</a>
             <table class="tblCitebus">
                 <tr>
                     <th class="noArret">
@@ -308,6 +309,7 @@
                 <% } %>
             </table>
         </div>
+        <a href="#hautPage">Retour au haut de la page</a>
     </div>
 
 </asp:Content>

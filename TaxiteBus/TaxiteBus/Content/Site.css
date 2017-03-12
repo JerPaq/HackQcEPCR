@@ -118,3 +118,30 @@ input[type="select"] {
     width: 30px;
     text-align: center;
 }
+
+.grosLien
+{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.divSaisieConnexion
+{
+    min-width: 805px;
+}
+
+.lienBasPage
+{
+    font-size: 0.7em !important;
+    margin-top: 0px;
+}
+
+.boutonReservation
+{
+    margin-top: 15px;
+}
+
+.comboBoxMap
+{
+    margin-bottom: 15px;
+}
