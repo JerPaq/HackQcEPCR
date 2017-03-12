@@ -239,6 +239,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="ServiceCitebus.aspx" />
     <Content Include="Site.Master" />
     <Content Include="TestGino.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -419,6 +420,13 @@
     </Compile>
     <Compile Include="reservation.aspx.designer.cs">
       <DependentUpon>reservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCitebus.aspx.cs">
+      <DependentUpon>ServiceCitebus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServiceCitebus.aspx.designer.cs">
+      <DependentUpon>ServiceCitebus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
