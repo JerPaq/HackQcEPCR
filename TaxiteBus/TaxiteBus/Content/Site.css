@@ -112,3 +112,13 @@ input[type="select"] {
     width: 130px;
     text-align: center;
 }
+.input-group {
+    float:left;
+    margin-right:20px;
+}
+.clear {
+    clear : both;
+}
+.center_group {
+    text-align: center;
+}

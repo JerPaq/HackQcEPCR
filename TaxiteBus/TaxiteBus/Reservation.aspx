@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <%--<asp:Button ID="Button2" runat="server" OnClick="Button1_Click" Text="Button" Visible="true" CssClass="cache" />--%>
-     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAhThl9sgDoIqDncDB7UibSep8I3wL9UiY&sensor=false&libraries=places"></script>
+     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&libraries=places"></script>
         <script type="text/javascript">
             google.maps.event.addDomListener(window, 'load', function () {
                 var places = new google.maps.places.Autocomplete(document.getElementById('MainContent_txtPlaces'));
@@ -214,27 +214,31 @@
 
     <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-12">
             <h2>Réservation</h2>
+            <div class="center_group">
             <div class="input-group">
                 <label>Départ :</label>
-                <label>Arrêt :</label>
                 <asp:TextBox runat="server" class="form-control" ID="txtPlaces" ></asp:TextBox>
+                <br />
+                <label>Arrêt :</label>
                 <asp:TextBox runat="server" Enabled="false" class="form-control" ID="TxbDepart" ></asp:TextBox>
                 <br />
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Rechercher" />
             </div>
-            <br />
             <div class="input-group">
-                <label>Vers :</label>
-                <label>Arrêt :</label>
+                <label>Destination :</label>
                 <asp:TextBox runat="server" class="form-control" ID="txtPlaces2" ></asp:TextBox>
+                <br />
+                <label>Arrêt :</label>
                 <asp:TextBox runat="server" Enabled="false" class="form-control" ID="TxbDestination" ></asp:TextBox>
                 <br />
+                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Rechercher" />
             </div>
-            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Rechercher" />
+            </div>
             <br />
-            <asp:Button ID="btnSoumettre" runat="server" Text="Soumettre" OnClick="btnSoumettre_Click" CssClass="btn btn-primary" />
+            <br />
+            <asp:Button ID="btnSoumettre" runat="server" Text="Soumettre" OnClick="btnSoumettre_Click" CssClass="btn btn-primary clear" />
         </div>
         <div class="col-md-4"></div>
     </div>
