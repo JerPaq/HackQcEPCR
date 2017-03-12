@@ -50,7 +50,7 @@ namespace TaxiteBus.Models
                 Trajet trajetCourrant = new Trajet();
                 this.trajets.Add(trajetCourrant);
                 foreach (Reservation currentReservation
-                    in lstReservations.Where(r =>( r.Depart.properties.Type_arret == currentZonesLignesNoms || r.Arrivee.properties.Type_arret == currentZonesLignesNoms)
+                    in lstReservations.Where(r => (r.Depart.properties.Type_arret == currentZonesLignesNoms || r.Arrivee.properties.Type_arret == currentZonesLignesNoms)
                                                 && r.Heure < DateTime.Now.AddHours(1)
                                                 && !r.DansTrajet)
                     .OrderByDescending(r => gare.GetDistanceTo(new GeoCoordinate(r.Depart.geometry.coordinates[1], r.Depart.geometry.coordinates[0]))))
@@ -65,16 +65,19 @@ namespace TaxiteBus.Models
                     trajetCourrant.Reservations.Add(currentReservation);
                     currentReservation.DansTrajet = true;
                 }
-                this.TrierFeatures(trajetCourrant);
+                if (trajetCourrant.Features.Count != 0)
+                    this.TrierFeatures(trajetCourrant);
+                else
+                    this.trajets.Remove(trajetCourrant);
             }
         }
 
         //------------------------------------------------------------------------
-        private  void DiviserReservationSurDeuxZones(List<Reservation> lstReservations)
+        private void DiviserReservationSurDeuxZones(List<Reservation> lstReservations)
         {
             foreach (Reservation currentReservation in lstReservations
                 .Where(r => r.Heure < DateTime.Now.AddHours(1)
-                &&  r.Depart.properties.Type_arret != r.Arrivee.properties.Type_arret).ToList())
+                && r.Depart.properties.Type_arret != r.Arrivee.properties.Type_arret).ToList())
             {
                 Reservation newReservation = new Reservation(currentReservation.Client, ArretsTaxiBus.Instance.Arrets.First(a => a.properties.CODE == "Gare"), currentReservation.Arrivee, currentReservation.Heure);
                 currentReservation.Arrivee = ArretsTaxiBus.Instance.Arrets.First(a => a.properties.CODE == "Gare");
@@ -165,7 +168,7 @@ namespace TaxiteBus.Models
             Random random = new Random();
 
             // Créer une liste de réservation au hasard
-            for (int i = 0; i <= 100; i++)
+            for (int i = 0; i <= 1; i++)
             {
                 Features depart = ArretsTaxiBus.Instance.Arrets[(int)(random.NextDouble() * ArretsTaxiBus.Instance.Arrets.Length)];
 
