@@ -20,9 +20,6 @@
             <th>
                 Heure
             </th>
-            <th>
-                Chauffeur
-            </th>
         </tr>
         <% foreach (TaxiteBus.Models.Reservation reserve in lstReserves) { %>
         <tr>
@@ -40,9 +37,6 @@
             </td>
             <td>
                 <%= reserve.Heure.ToString() %>
-            </td>
-            <td>
-                Chauffeur
             </td>
         </tr>
         <% } %>

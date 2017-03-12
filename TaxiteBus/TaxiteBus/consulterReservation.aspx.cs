@@ -24,7 +24,9 @@ namespace TaxiteBus
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lstReserves = ChargerReservationJSON();
             afficherTrajet();
+            afficherChauffeur();
         }
         
         protected void afficherTrajet()
