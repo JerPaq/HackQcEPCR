@@ -192,6 +192,7 @@
 
 
         </script>
+        <br />
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Choisir une zone
@@ -215,7 +216,7 @@
 
     <% if (utilEstClient()) {%>
 
-    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" />
+    <asp:Button ID="BtnReserver" runat="server" Text="Faire une réservation" OnClick="BtnReserver_Click" class="btn btn-primary" />
 
     <% } %>
 
